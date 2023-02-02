@@ -15,14 +15,18 @@ export default function Home() {
           subtitle={
             <span>
               [Sal·βo·kon·
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://9gag.com/tag/duck"
+              <span
                 className="no-style-link duck-link"
+                onClick={() =>
+                  window.open(
+                    'https://9gag.com/tag/duck',
+                    '_blank',
+                    'noopener,noreferrer'
+                  )
+                }
               >
                 <strong>duk</strong>
-              </a>
+              </span>
               ·to]
             </span>
           }

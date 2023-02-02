@@ -51,71 +51,73 @@ export const NavbarMenu = () => {
             </a>
           </div>
         </Slide>
-        <Box
-          sx={{ width: matchesSmallDevices ? '100%' : '60%', maxWidth: 600 }}
-          className="menu-items"
-        >
-          <Masonry columns={2} className="m-0">
-            <Zoom in={openMenu} style={{ transitionDelay: '50ms' }}>
-              <Nav.Link
-                style={{ height: '50%' }}
-                onClick={() => navigateAndClose('/')}
-                disabled={router.pathname.slice(1) === ''}
-              >
-                {router.pathname.slice(1) === '' && (
-                  <span className="navbar-route-whisperer">You are here</span>
-                )}
-                Home
-              </Nav.Link>
-            </Zoom>
-            <Zoom in={openMenu}>
-              <Nav.Link
-                onClick={() => navigateAndClose('/about')}
-                disabled={router.pathname.slice(1) === 'about'}
-              >
-                {router.pathname.slice(1) === 'about' && (
-                  <span className="navbar-route-whisperer">You are here</span>
-                )}
-                About
-              </Nav.Link>
-            </Zoom>
-            <Zoom in={openMenu} style={{ transitionDelay: '100ms' }}>
-              <Nav.Link
-                onClick={() => navigateAndClose('/films')}
-                disabled={router.pathname.slice(1) === 'films'}
-                style={{ height: '60%' }}
-              >
-                {router.pathname.slice(1) === 'films' && (
-                  <span className="navbar-route-whisperer">You are here</span>
-                )}
-                Films
-              </Nav.Link>
-            </Zoom>
-            <Zoom in={openMenu}>
-              <Nav.Link
-                onClick={() => navigateAndClose('/collections')}
-                disabled={router.pathname.slice(1) === 'collections'}
-                style={{ height: '30%' }}
-              >
-                {router.pathname.slice(1) === 'collections' && (
-                  <span className="navbar-route-whisperer">You are here</span>
-                )}
-                Collections
-              </Nav.Link>
-            </Zoom>
-            <Zoom in={openMenu} style={{ transitionDelay: '20ms' }}>
-              <Nav.Link
-                onClick={() => navigateAndClose('/misc')}
-                disabled={router.pathname.slice(1) === 'misc'}
-              >
-                {router.pathname.slice(1) === 'misc' && (
-                  <span className="navbar-route-whisperer">You are here</span>
-                )}
-                Miscellaneous
-              </Nav.Link>
-            </Zoom>
-          </Masonry>
-        </Box>
+        <Zoom in={openMenu} style={{ transitionDelay: '50ms' }}>
+          <Box
+            sx={{ width: matchesSmallDevices ? '100%' : '60%', maxWidth: 600 }}
+            className="menu-items"
+          >
+            <Masonry columns={2} className="m-0">
+              <Zoom in={openMenu} style={{ transitionDelay: '50ms' }}>
+                <Nav.Link
+                  style={{ height: '50%' }}
+                  onClick={() => navigateAndClose('/')}
+                  disabled={router.pathname.slice(1) === ''}
+                >
+                  {router.pathname.slice(1) === '' && (
+                    <span className="navbar-route-whisperer">You are here</span>
+                  )}
+                  Home
+                </Nav.Link>
+              </Zoom>
+              <Zoom in={openMenu}>
+                <Nav.Link
+                  onClick={() => navigateAndClose('/about')}
+                  disabled={router.pathname.slice(1) === 'about'}
+                >
+                  {router.pathname.slice(1) === 'about' && (
+                    <span className="navbar-route-whisperer">You are here</span>
+                  )}
+                  About
+                </Nav.Link>
+              </Zoom>
+              <Zoom in={openMenu} style={{ transitionDelay: '100ms' }}>
+                <Nav.Link
+                  onClick={() => navigateAndClose('/films')}
+                  disabled={router.pathname.slice(1) === 'films'}
+                  style={{ height: '60%' }}
+                >
+                  {router.pathname.slice(1) === 'films' && (
+                    <span className="navbar-route-whisperer">You are here</span>
+                  )}
+                  Films
+                </Nav.Link>
+              </Zoom>
+              <Zoom in={openMenu}>
+                <Nav.Link
+                  onClick={() => navigateAndClose('/collections')}
+                  disabled={router.pathname.slice(1) === 'collections'}
+                  style={{ height: '30%' }}
+                >
+                  {router.pathname.slice(1) === 'collections' && (
+                    <span className="navbar-route-whisperer">You are here</span>
+                  )}
+                  Collections
+                </Nav.Link>
+              </Zoom>
+              <Zoom in={openMenu} style={{ transitionDelay: '20ms' }}>
+                <Nav.Link
+                  onClick={() => navigateAndClose('/misc')}
+                  disabled={router.pathname.slice(1) === 'misc'}
+                >
+                  {router.pathname.slice(1) === 'misc' && (
+                    <span className="navbar-route-whisperer">You are here</span>
+                  )}
+                  Miscellaneous
+                </Nav.Link>
+              </Zoom>
+            </Masonry>
+          </Box>
+        </Zoom>
       </Navbar>
     </React.Fragment>
   )
