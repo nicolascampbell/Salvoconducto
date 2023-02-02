@@ -20,15 +20,7 @@ import {
 import NavbarBrand from './NavbarBrand'
 export const NavbarMenu = () => {
   const [openMenu, setOpenMenu] = React.useState(false)
-  const menuContainerRef = React.useRef(null)
   const navbarRef = useSpringRef()
-
-  const [styles] = useSpring(
-    () => ({
-      ref: navbarRef
-    }),
-    []
-  )
 
   const router = useRouter()
   const matchesSmallDevices = useMediaQuery('(max-width:768px)')
@@ -36,25 +28,8 @@ export const NavbarMenu = () => {
   function handleOpenMenu(shouldOpen) {
     if (shouldOpen) {
       document.body.classList.add('scroll-lock')
-      navbarRef.start({
-        from: { background: 'transparent' },
-        to: [{ background: 'var(--step1)', zIndex: 100 }],
-        config: {
-          mass: 2,
-          friction: 20
-        }
-      })
     } else {
       document.body.classList.remove('scroll-lock')
-      navbarRef.start({
-        from: { background: 'var(--step1)' },
-        to: { background: 'transparent', zIndex: 0 },
-        delay: '400ms',
-        config: {
-          mass: 2,
-          friction: 20
-        }
-      })
     }
     setOpenMenu(shouldOpen)
   }
@@ -93,7 +68,12 @@ export const NavbarMenu = () => {
           className="menu-items"
         >
           <Masonry columns={matchesSmallDevices ? 1 : 2}>
-            <Zoom in={openMenu} style={{ transitionDelay: '100ms' }}>
+            <span className='display-none'></span>
+            <Zoom
+              in={openMenu}
+              style={{ transitionDelay: '50ms' }}
+              unmountOnExit
+            >
               <Nav.Link
                 style={{ height: '50%' }}
                 href={getLink('/')}
@@ -102,7 +82,7 @@ export const NavbarMenu = () => {
                 Home
               </Nav.Link>
             </Zoom>
-            <Zoom in={openMenu}>
+            <Zoom in={openMenu} unmountOnExit>
               <Nav.Link
                 style={{ height: '3rem', lineHeight: 1 }}
                 href={getLink('/about')}
@@ -111,7 +91,11 @@ export const NavbarMenu = () => {
                 About
               </Nav.Link>
             </Zoom>
-            <Zoom in={openMenu} style={{ transitionDelay: '200ms' }}>
+            <Zoom
+              in={openMenu}
+              style={{ transitionDelay: '100ms' }}
+              unmountOnExit
+            >
               <Nav.Link
                 href={getLink('/films')}
                 disabled={router.pathname.slice(1) === 'films'}
@@ -120,7 +104,7 @@ export const NavbarMenu = () => {
                 Films
               </Nav.Link>
             </Zoom>
-            <Zoom in={openMenu}>
+            <Zoom in={openMenu} unmountOnExit>
               <Nav.Link
                 href={getLink('/collections')}
                 disabled={router.pathname.slice(1) === 'collections'}
@@ -129,7 +113,11 @@ export const NavbarMenu = () => {
                 Collections
               </Nav.Link>
             </Zoom>
-            <Zoom in={openMenu} style={{ transitionDelay: '20ms' }}>
+            <Zoom
+              in={openMenu}
+              style={{ transitionDelay: '20ms' }}
+              unmountOnExit
+            >
               <Nav.Link
                 href={getLink('/misc')}
                 disabled={router.pathname.slice(1) === 'misc'}
