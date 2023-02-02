@@ -9,6 +9,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import Slide from '@mui/material/Slide'
 import Zoom from '@mui/material/Zoom'
 import Masonry from '@mui/lab/Masonry'
+
 import {
   useTrail,
   config,
@@ -88,10 +89,10 @@ export const NavbarMenu = () => {
           </Stack>
         </Slide>
         <Box
-          sx={{ width: matchesSmallDevices ? '100%' : '60%', maxWidth:600 }}
+          sx={{ width: matchesSmallDevices ? '100%' : '60%', maxWidth: 600 }}
           className="menu-items"
         >
-          <Masonry columns={2}>
+          <Masonry columns={matchesSmallDevices ? 1 : 2}>
             <Zoom in={openMenu} style={{ transitionDelay: '100ms' }}>
               <Nav.Link
                 style={{ height: '50%' }}
