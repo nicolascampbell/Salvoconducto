@@ -1,17 +1,5 @@
 import '../styles/globals.scss'
-// Variables
-import '../styles/variables.scss'
-// Components
-import '../styles/components/definitions.scss'
-import '../styles/components/navbar.scss'
-// Pages
-import '../styles/pages/misc.scss'
-// Extras
-import '../styles/Home.module.scss'
-import '../styles/components.scss'
-import '../styles/font-faces/roboto-mono.scss'
-import '../styles/font-faces/roboto.scss'
-import '../styles/font-faces/manrope.scss'
+
 import SSRProvider from 'react-bootstrap/SSRProvider'
 import { Unstable_Grid2 as Grid } from '@mui/material' // Grid version 2
 import { Footer } from '../components/Footer'

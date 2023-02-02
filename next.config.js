@@ -1,14 +1,24 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    unoptimized: true,
+    unoptimized: true
   },
-  basePath: "/Salvoconducto",
+  basePath: '/Salvoconducto',
   eslint: {
     // Warning: This allows production builds to successfully complete even if
     // your project has ESLint errors.
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: true
   },
-};
+  webpack: (config) => {
+    config.optimization.splitChunks.cacheGroups = {
+      common: {
+        name: 'common',
+        chunks: 'all'
+      }
+    }
 
-module.exports = nextConfig;
+    return config
+  }
+}
+
+module.exports = nextConfig
