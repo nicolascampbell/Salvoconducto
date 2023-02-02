@@ -17,7 +17,7 @@ const Miscellaneous = () => {
         </h5>
       </Grid>
       <Grid  xs={6}>
-        <img src={getLink('/workinOnIt.webp')} alt="" />
+        <img src={getLink('/workinOnIt.webp')} alt="" width={'100%'}/>
       </Grid>
     </Grid>
   )
