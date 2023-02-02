@@ -23,25 +23,25 @@
     color: rgb(61, 61, 61);
     margin: 0 0 10px 0;
   }
-  a {
-    cursor: pointer;
-    overflow: hidden;
-    font-weight: 600 !important;
-    text-decoration: none;
-    background: linear-gradient(
-      to right,
-      rgb(65, 23, 107),
-      rebeccapurple 50%,
-      rgb(145, 85, 201) 50%
-    );
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% 100%;
-    background-position: 100%;
-    transition: background-position 400ms ease;
-  }
-  a:hover {
-    background-position: 0 100%;
-  }
+  // a {
+  //   cursor: pointer;
+  //   overflow: hidden;
+  //   font-weight: 600 !important;
+  //   text-decoration: none;
+  //   background: linear-gradient(
+  //     to right,
+  //     rgb(65, 23, 107),
+  //     rebeccapurple 50%,
+  //     rgb(145, 85, 201) 50%
+  //   );
+  //   background-clip: text;
+  //   -webkit-background-clip: text;
+  //   -webkit-text-fill-color: transparent;
+  //   background-size: 200% 100%;
+  //   background-position: 100%;
+  //   transition: background-position 400ms ease;
+  // }
+  // a:hover {
+  //   background-position: 0 100%;
+  // }
 }

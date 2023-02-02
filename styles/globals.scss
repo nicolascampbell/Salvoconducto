@@ -17,12 +17,21 @@
 :root {
   --bs-nav-link-color: black;
   --step0: transparent;
-  --step1: #F56918;
+  --step1: #f56918;
 }
 
-.responsive-title{
-  @media  (max-width: 511px) {
-    font-size: 10vw!important;
+.responsive-title {
+  @media (max-width: 511px) {
+    font-size: 10vw !important;
+  }
+}
+a.no-style-link  {
+  cursor: pointer;
+  text-decoration: none;
+  color: rgb(109, 106, 106);
+  &.duck-link:hover{
+    color: #FFD801;
+
   }
 }
 html,
@@ -66,13 +75,13 @@ footer {
   padding: 0.5rem;
   font-weight: 100;
 }
-.img-subtitle{
+.img-subtitle {
   display: block;
   float: right;
   font-size: 0.8rem;
-  color:rgba(0, 0, 0, 0.736);
+  color: rgba(0, 0, 0, 0.736);
   font-weight: 200;
 }
-.preview-imgs{
+.preview-imgs {
   cursor: pointer;
 }

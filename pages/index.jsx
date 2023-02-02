@@ -14,7 +14,16 @@ export default function Home() {
           title={'Salvoconducto'}
           subtitle={
             <span>
-              [Sal·βo·kon·<strong>duk</strong>·to]
+              [Sal·βo·kon·
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://9gag.com/tag/duck"
+                className="no-style-link duck-link"
+              >
+                <strong>duk</strong>
+              </a>
+              ·to]
             </span>
           }
           type={'Website'}
