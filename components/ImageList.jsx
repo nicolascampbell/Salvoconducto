@@ -35,7 +35,7 @@ export default function MasonryImageList() {
               className="preview-imgs"
               style={{
                 width: getPhotoWidth(
-                  item.relevance !== null ? item.relevance : getRandomInt(6)
+                  item.relevance !== null ? item.relevance : getRandomInt(8)
                 )
               }}
               onClick={() =>
