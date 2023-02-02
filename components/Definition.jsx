@@ -4,7 +4,7 @@ import React, { Children } from 'react'
 const Definition = ({ title, subtitle, type, definitions, children }) => {
   return (
     <Stack className="definition">
-      <Typography variant="h3" className="title">
+      <Typography variant="h3" className="title responsive-title">
         {title}
       </Typography>
       <Typography variant="subtitle1" className="subtitle">

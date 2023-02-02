@@ -20,6 +20,11 @@
   --step1: #F56918;
 }
 
+.responsive-title{
+  @media  (max-width: 511px) {
+    font-size: 10vw;
+  }
+}
 html,
 body {
   padding: 0;

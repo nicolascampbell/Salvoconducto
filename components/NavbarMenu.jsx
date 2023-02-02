@@ -20,7 +20,15 @@ import {
 import NavbarBrand from './NavbarBrand'
 export const NavbarMenu = () => {
   const [openMenu, setOpenMenu] = React.useState(false)
+  const menuContainerRef = React.useRef(null)
   const navbarRef = useSpringRef()
+
+  const [styles] = useSpring(
+    () => ({
+      ref: navbarRef
+    }),
+    []
+  )
 
   const router = useRouter()
   const matchesSmallDevices = useMediaQuery('(max-width:768px)')
@@ -28,8 +36,25 @@ export const NavbarMenu = () => {
   function handleOpenMenu(shouldOpen) {
     if (shouldOpen) {
       document.body.classList.add('scroll-lock')
+      navbarRef.start({
+        from: { background: 'transparent' },
+        to: [{ background: 'var(--step1)', zIndex: 100 }],
+        config: {
+          mass: 2,
+          friction: 20
+        }
+      })
     } else {
       document.body.classList.remove('scroll-lock')
+      navbarRef.start({
+        from: { background: 'var(--step1)' },
+        to: { background: 'transparent', zIndex: 0 },
+        delay: '400ms',
+        config: {
+          mass: 2,
+          friction: 20
+        }
+      })
     }
     setOpenMenu(shouldOpen)
   }
@@ -51,77 +76,78 @@ export const NavbarMenu = () => {
           <div className="menu-detail"></div>
         </div>
         <Slide direction="up" in={openMenu}>
-          <Stack className="menu-socials mb-3 me-3" direction="row" spacing={1}>
-            <span className="me-2">Send me an email</span>
-
+          <div className="menu-socials mb-3 me-3">
             <a
               target="_blank"
               href="mailto:nicolasdsc@protonmail.com"
               rel="noopener noreferrer"
             >
+              <span className="me-2">Send me an email</span>
               <AlternateEmailIcon />
             </a>
-          </Stack>
+          </div>
         </Slide>
         <Box
           sx={{ width: matchesSmallDevices ? '100%' : '60%', maxWidth: 600 }}
           className="menu-items"
         >
-          <Masonry columns={matchesSmallDevices ? 1 : 2}>
-            <span className='display-none'></span>
-            <Zoom
-              in={openMenu}
-              style={{ transitionDelay: '50ms' }}
-              unmountOnExit
-            >
+          <Masonry columns={2}>
+            <Zoom in={openMenu} style={{ transitionDelay: '50ms' }}>
               <Nav.Link
                 style={{ height: '50%' }}
                 href={getLink('/')}
                 disabled={router.pathname.slice(1) === ''}
+                className={'responsive-title sm'}
               >
+                {router.pathname.slice(1) === '' && (
+                  <span className="navbar-route-whisperer">You are here</span>
+                )}
                 Home
               </Nav.Link>
             </Zoom>
-            <Zoom in={openMenu} unmountOnExit>
+            <Zoom in={openMenu}>
               <Nav.Link
-                style={{ height: '3rem', lineHeight: 1 }}
                 href={getLink('/about')}
                 disabled={router.pathname.slice(1) === 'about'}
               >
+                {router.pathname.slice(1) === 'about' && (
+                  <span className="navbar-route-whisperer">You are here</span>
+                )}
                 About
               </Nav.Link>
             </Zoom>
-            <Zoom
-              in={openMenu}
-              style={{ transitionDelay: '100ms' }}
-              unmountOnExit
-            >
+            <Zoom in={openMenu} style={{ transitionDelay: '100ms' }}>
               <Nav.Link
                 href={getLink('/films')}
                 disabled={router.pathname.slice(1) === 'films'}
                 style={{ height: '60%' }}
               >
+                {router.pathname.slice(1) === 'films' && (
+                  <span className="navbar-route-whisperer">You are here</span>
+                )}
                 Films
               </Nav.Link>
             </Zoom>
-            <Zoom in={openMenu} unmountOnExit>
+            <Zoom in={openMenu}>
               <Nav.Link
                 href={getLink('/collections')}
                 disabled={router.pathname.slice(1) === 'collections'}
                 style={{ height: '30%' }}
               >
+                {router.pathname.slice(1) === 'collections' && (
+                  <span className="navbar-route-whisperer">You are here</span>
+                )}
                 Collections
               </Nav.Link>
             </Zoom>
-            <Zoom
-              in={openMenu}
-              style={{ transitionDelay: '20ms' }}
-              unmountOnExit
-            >
+            <Zoom in={openMenu} style={{ transitionDelay: '20ms' }}>
               <Nav.Link
                 href={getLink('/misc')}
                 disabled={router.pathname.slice(1) === 'misc'}
               >
+                {router.pathname.slice(1) === 'misc' && (
+                  <span className="navbar-route-whisperer">You are here</span>
+                )}
                 Miscellaneous
               </Nav.Link>
             </Zoom>

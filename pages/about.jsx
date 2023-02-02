@@ -2,24 +2,24 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import { Unstable_Grid2 as Grid } from '@mui/material' // Grid version 2
 import Definition from '../components/Definition'
-
+import Image from 'next/image'
 export default function Home() {
   const router = useRouter()
   const getLink = (path) => `${router.basePath}${path}`
   return (
     <Grid container justifyContent={'center'}>
       <Grid xs={5} md={3} >
-        <img
+        <Image
           src={getLink('/about.jpg')}
           srcSet={getLink('/about.jpg')}
           alt={'Foto of Nicolas'}
           loading="lazy"
-          height="auto"
-          width={'100%'}
+          height={3000}
+          width={1999}
         />
         <span className="img-subtitle"> Foto by Matt</span>
       </Grid>
-      <Grid xs={10} md={6} mdOffset={1}>
+      <Grid xs={10} md={5} lg={4} mdOffset={1}>
         <Definition
           title={'Nicolás'}
           subtitle={'[ni.koˈlas]'}

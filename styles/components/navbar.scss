@@ -51,7 +51,7 @@ a:hover {
     -webkit-transition: 0.25s 0s ease-in-out;
     transition: 0.25s 0s ease-in-out;
     a:hover {
-      color: $support-accent-color;
+      color: $secondary-accent-color;
     }
   }
 
@@ -103,19 +103,24 @@ a:hover {
   right: 0;
   padding: 1rem;
   top: 100%;
-
+  @media (max-width: 511px) {
+    padding: 0rem;
+  }
   .nav-link {
     text-align: right;
     text-transform: uppercase;
     font-weight: 400;
     font-size: 1.5rem;
+    @media (max-width: 511px) {
+      font-size: 4.2vw;
+    }
     z-index: 2;
     border: 2px solid $secondary-accent-color;
     // border-right: transparent;
     // &:last-child {
     //   border-right: 2px solid $primary-accent-color;
     // }
-    padding: 0.5rem;
+    padding: 0.6rem;
     background-color: $secondary-accent-color;
     transition: background-color ease-in-out 0.2s;
     --bg-h: 0.3rem;
@@ -124,6 +129,14 @@ a:hover {
     }
     &.disabled {
       background-color: $support-accent-color;
+    }
+    .navbar-route-whisperer {
+      position: absolute;
+      font-size: 0.5rem;
+      line-height: 0.4rem;
+      @media (max-width: 511px) {
+        font-size: 1vw;
+      }
     }
   }
 }

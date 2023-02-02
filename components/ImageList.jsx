@@ -4,6 +4,7 @@ import ImageList from '@mui/material/ImageList'
 import ImageListItem from '@mui/material/ImageListItem'
 import { useRouter } from 'next/router'
 import useMediaQuery from '@mui/material/useMediaQuery'
+
 function getPhotoWidth(relevance) {
   if (relevance === 0) {
     return '60%'
