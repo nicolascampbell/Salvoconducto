@@ -1,0 +1,73 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+// Variables
+@import './variables.scss';
+// Components
+@import './components/definitions.scss';
+@import './components/navbar.scss';
+// Pages
+@import './pages/misc.scss';
+// Extras
+@import './Home.module.scss';
+@import './components.scss';
+@import './font-faces/roboto-mono.scss';
+@import './font-faces/roboto.scss';
+@import './font-faces/manrope.scss';
+
+:root {
+  --bs-nav-link-color: black;
+  --step0: transparent;
+  --step1: #F56918;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Manrope', sans-serif !important;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+.scroll-lock {
+  overflow-y: hidden;
+}
+mark {
+  padding: 0 !important;
+  background-color: white !important;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    color: black;
+    background: white;
+  }
+}
+
+footer {
+  text-align: center;
+  padding: 0.5rem;
+  font-weight: 100;
+}
+.img-subtitle{
+  display: block;
+  float: right;
+  font-size: 0.8rem;
+  color:rgba(0, 0, 0, 0.736);
+  font-weight: 200;
+}
+.preview-imgs{
+  cursor: pointer;
+}
