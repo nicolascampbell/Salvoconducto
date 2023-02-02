@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-import { Unstable_Grid2 as Grid } from '@mui/material' // Grid version 2
+import { emphasize, Unstable_Grid2 as Grid } from '@mui/material' // Grid version 2
 import Definition from '../components/Definition'
 
 export default function Home() {
@@ -12,7 +12,11 @@ export default function Home() {
       <Grid xs={10} sm={7} md={5} lg={4}>
         <Definition
           title={'Salvoconducto'}
-          subtitle={'[Sal·vo·con·duc·to]'}
+          subtitle={
+            <span>
+              [Sal·βo·kon·<strong>duk</strong>·to]
+            </span>
+          }
           type={'Website'}
           definitions={[
             'A place to share what my eyes see.',
