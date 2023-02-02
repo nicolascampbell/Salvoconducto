@@ -102,7 +102,7 @@ const lastFilm = [
   { src: '/films/last_film/AA027.webp', relevance: null },
   { src: '/films/last_film/AA033.webp', relevance: null },
   { src: '/films/last_film/AA004.webp', relevance: null },
-  { src: '/films/last_film/AA010.webp', relevance: null },
+  { src: '/films/last_film/AA010.webp', relevance: 4 },
   { src: '/films/last_film/AA016.webp', relevance: null },
   { src: '/films/last_film/AA022.webp', relevance: null },
   { src: '/films/last_film/AA028.webp', relevance: null },

@@ -1,9 +1,9 @@
-import '../styles/globals.scss'
+import 'styles/globals.scss'
 
 import SSRProvider from 'react-bootstrap/SSRProvider'
 import { Unstable_Grid2 as Grid } from '@mui/material' // Grid version 2
 import { Footer } from '../components/Footer'
-import NavbarMenu from '../components/NavbarMenu'
+import NavbarMenu from 'components/NavbarMenu'
 
 function MyApp({ Component, pageProps }) {
   return (
