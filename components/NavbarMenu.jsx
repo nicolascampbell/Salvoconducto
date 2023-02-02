@@ -91,13 +91,12 @@ export const NavbarMenu = () => {
           sx={{ width: matchesSmallDevices ? '100%' : '60%', maxWidth: 600 }}
           className="menu-items"
         >
-          <Masonry columns={2}>
+          <Masonry columns={2} className='m-0'>
             <Zoom in={openMenu} style={{ transitionDelay: '50ms' }}>
               <Nav.Link
                 style={{ height: '50%' }}
                 href={getLink('/')}
                 disabled={router.pathname.slice(1) === ''}
-                className={'responsive-title sm'}
               >
                 {router.pathname.slice(1) === '' && (
                   <span className="navbar-route-whisperer">You are here</span>

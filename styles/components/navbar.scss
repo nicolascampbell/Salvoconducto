@@ -101,11 +101,9 @@ a:hover {
 .menu-items {
   position: absolute;
   right: 0;
-  padding: 1rem;
+  padding: 0.9rem;
   top: 100%;
-  @media (max-width: 511px) {
-    padding: 0rem;
-  }
+  padding-left: 0.45rem;
   .nav-link {
     text-align: right;
     text-transform: uppercase;
@@ -133,9 +131,9 @@ a:hover {
     .navbar-route-whisperer {
       position: absolute;
       font-size: 0.5rem;
-      line-height: 0.4rem;
+      line-height: 0;
       @media (max-width: 511px) {
-        font-size: 1vw;
+        font-size: 1.6vw;
       }
     }
   }
