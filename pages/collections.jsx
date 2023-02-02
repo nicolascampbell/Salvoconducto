@@ -10,7 +10,7 @@ const Personal = () => {
         </Col>
         <Col xs={12} className="text-center">
           <h5 className="fw-light">
-            Is comming soon! Meanwhile you can look at some pictures
+          Is comming somewhen! I am still working on it!
           </h5>
         </Col>
       </Row>
