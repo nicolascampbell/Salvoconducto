@@ -20,7 +20,7 @@ export const NavbarMenu = () => {
     setOpenMenu(shouldOpen)
   }
   function navigateAndClose(route) {
-    router.push(getLink(route)).then(() => setOpenMenu(false))
+    router.push(getLink(route)).then(() => handleOpenMenu(false))
   }
   return (
     <React.Fragment>
