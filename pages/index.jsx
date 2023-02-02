@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <Grid container justifyContent={'center'}>
-      <Grid xs={4}>
+      <Grid xs={12} md={10} lg={4}>
         <Definition
           title={'Salvoconducto'}
           subtitle={'[Sal·vo·con·duc·to]'}
