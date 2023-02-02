@@ -35,8 +35,6 @@ const SQUARE_SIZE = 5
 const MAX_WIDTH = 8 * SQUARE_SIZE + OFFSET * 2
 const MAX_HEIGHT = 9 * SQUARE_SIZE + OFFSET * 2
 const Miscellaneous = () => {
-  const [open, toggle] = React.useState(true)
-
   const gridApi = useSpringRef()
 
   const gridSprings = useTrail(45 / SQUARE_SIZE + 1, {
@@ -70,7 +68,7 @@ const Miscellaneous = () => {
 
   useChain([gridApi, boxApi], [0, 1], 1000)
 
-  const handleClick = (isEnter) => {
+  const handleClick = (isEnter, withCompleteCycle = false) => {
     boxApi.start((index) => ({
       from: {
         scale: isEnter ? 1 : 0
@@ -84,6 +82,9 @@ const Miscellaneous = () => {
         friction: 100
       }
     }))
+    if (withCompleteCycle) {
+      handleClick(!isEnter)
+    }
   }
 
   return (
@@ -92,6 +93,7 @@ const Miscellaneous = () => {
         className="navbar-brand-container"
         onMouseEnter={() => handleClick(true)}
         onMouseLeave={() => handleClick(false)}
+        onTouchStart={() => handleClick(true, true)}
       >
         <svg viewBox={`0 0 ${MAX_WIDTH} ${MAX_HEIGHT}`}>
           <g>
