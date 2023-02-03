@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build && next export",
     "start": "next start",
-    "lint": "next lint",
-    "deploy": "next build && next export && touch out/.nojekyll && git add out/ && git commit -m \"Deploy\" && git subtree push --prefix out origin gh-pages"
+    "lint": "next lint"
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",
@@ -17,13 +16,11 @@
     "@mui/material": "^5.11.7",
     "@react-spring/web": "^9.6.1",
     "bootstrap": "^5.2.1",
-    "ef-infinite-canvas": "^0.5.6-alpha",
     "next": "12.3.1",
     "prettier": "^2.8.3",
     "react": "18.2.0",
     "react-bootstrap": "^2.5.0",
-    "react-dom": "18.2.0",
-    "react-use-measure": "^2.1.1"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "eslint": "8.24.0",
