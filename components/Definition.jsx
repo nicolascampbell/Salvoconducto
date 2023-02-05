@@ -1,9 +1,16 @@
 import { Stack, Typography } from '@mui/material'
 import React, { Children } from 'react'
 
-const Definition = ({ title, subtitle, type, definitions, children }) => {
+const Definition = ({
+  title,
+  subtitle,
+  type,
+  definitions,
+  children,
+  classes
+}) => {
   return (
-    <Stack className="definition">
+    <Stack className={`definition ${classes}`}>
       <Typography variant="h3" className="title responsive-title">
         {title}
       </Typography>

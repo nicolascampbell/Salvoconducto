@@ -24,8 +24,8 @@
   overflow: hidden;
 }
 .responsive-title {
-  @media (max-width: 511px) {
-    font-size: 10vw !important;
+  @media (max-width: 576px) {
+    font-size: 7.5vw !important;
   }
 }
 .no-style-link {
@@ -33,14 +33,15 @@
   text-decoration: none;
   color: rgb(109, 106, 106);
   &.duck-link:hover {
-    color: #ffd801;
+    color: $duck-color;
   }
 }
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,500;0,600;1,400&family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;1,500;1,600&display=swap');
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Manrope', sans-serif !important;
+  font-family: 'Josefin Sans', sans-serif !important;
   overflow-y: scroll;
   overflow-x: hidden;
   scroll-behavior: smooth;

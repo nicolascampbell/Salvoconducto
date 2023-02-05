@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Col, Row } from 'react-bootstrap'
+import { Unstable_Grid2 as Grid } from '@mui/material' // Grid version 2
 import ImageList from '../components/ImageList'
 import Measure from 'react-measure'
 import produce from 'immer'
