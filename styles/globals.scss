@@ -16,6 +16,12 @@
 @import 'react-grid-layout/css/styles.css';
 @import 'react-resizable/css/styles.css';
 :root  {
+// @import './font-faces/roboto.scss';
+// @import './font-faces/manrope.scss';
+// @import './font-faces/jost.scss';
+@import './font-faces/josefin-sans.scss';
+
+:root {
   --bs-nav-link-color: black;
   --step0: transparent;
   --step1: #f56918;
@@ -36,7 +42,6 @@
     color: $duck-color;
   }
 }
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,500;0,600;1,400&family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;1,500;1,600&display=swap');
 html,
 body {
   padding: 0;
