@@ -19,10 +19,11 @@ export default function Home() {
         />
         <span className="img-subtitle"> Foto by Matt</span>
       </Grid>
-      <Grid xs={10} md={5} lg={4} mdOffset={1}>
+      <Grid xs={10} md={6} lg={5} mdOffset={1}>
         <Definition
           title={'Nicolás'}
           subtitle={'[ni.koˈlas]'}
+          classes='special-definition'
           type={'Person'}
           definitions={[
             'I like yellow.',

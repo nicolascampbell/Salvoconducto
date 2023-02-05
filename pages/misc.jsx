@@ -31,7 +31,7 @@ const Miscellaneous = () => {
   return (
     <Grid container justifyContent={'center'}>
       <Grid xs={12}>
-        <h1 className="fw-light text-center">Miscellaneous Page</h1>
+        <h1 className=" text-center">Miscellaneous Page</h1>
       </Grid>
       <Grid xs={12} className="text-center">
         <h5 className="fw-light">

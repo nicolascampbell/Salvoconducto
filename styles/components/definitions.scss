@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700;800;900&display=swap');
 .definition {
+  @media (min-width: 992px) {
+    border: 4px solid hotpink;
+  }
+  padding: 4rem;
   & * {
     font-family: 'Roboto Mono', monospace;
   }
@@ -7,11 +11,20 @@
   .title {
     color: rgb(71, 70, 70);
     display: inline-block;
+    font-size: 2.5rem;
 
   }
   .subtitle,
   p {
     color: rgb(109, 106, 106);
+  }
+  &.special-definition{
+    ol li:first-child::marker{
+      color: $duck-color;
+      position: relative;
+      font-weight: bold;
+      font-size: 0.8rem;
+    }
   }
   ol li::marker {
     color: $support-accent-color;

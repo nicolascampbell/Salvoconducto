@@ -1,25 +1,21 @@
 import React from 'react'
-import { Container, Col, Row } from 'react-bootstrap'
+import { Unstable_Grid2 as Grid } from '@mui/material' // Grid version 2
 import ImageList from '../components/ImageList'
-const Personal = () => {
+const Collections = () => {
   return (
-    <Container fluid>
-      <Row>
-        <Col xs={12}>
-          <h1 className="fw-light text-center">Colections</h1>
-        </Col>
-        <Col xs={12} className="text-center">
-          <h5 className="fw-light">
-          Is comming somewhen! I am still working on it!
-          </h5>
-        </Col>
-      </Row>
-      <Row className='mt-4'>
-        <Col>
-          <ImageList />
-        </Col>
-      </Row>
-    </Container>
+    <Grid container>
+      <Grid xs={12}>
+        <h1 className=" text-center">Coollections Page</h1>
+      </Grid>
+      <Grid xs={12} className="text-center">
+        <h5 className="fw-light">
+          Is comming soon! Meanwhile you can look at some pictures
+        </h5>
+      </Grid>
+      <Grid className="mt-5">
+        <ImageList />
+      </Grid>
+    </Grid>
   )
 }
-export default Personal
+export default Collections

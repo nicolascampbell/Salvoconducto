@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-import { emphasize, Unstable_Grid2 as Grid } from '@mui/material' // Grid version 2
+import { Unstable_Grid2 as Grid } from '@mui/material' // Grid version 2
 import Definition from '../components/Definition'
 
 export default function Home() {
