@@ -13,25 +13,27 @@
 @import './font-faces/roboto-mono.scss';
 @import './font-faces/roboto.scss';
 @import './font-faces/manrope.scss';
-
-:root {
+@import 'react-grid-layout/css/styles.css';
+@import 'react-resizable/css/styles.css';
+:root  {
   --bs-nav-link-color: black;
   --step0: transparent;
   --step1: #f56918;
 }
-
+.box{
+  overflow: hidden;
+}
 .responsive-title {
   @media (max-width: 511px) {
     font-size: 10vw !important;
   }
 }
-.no-style-link  {
+.no-style-link {
   cursor: pointer;
   text-decoration: none;
   color: rgb(109, 106, 106);
-  &.duck-link:hover{
-    color: #FFD801;
-
+  &.duck-link:hover {
+    color: #ffd801;
   }
 }
 html,
@@ -84,4 +86,6 @@ footer {
 }
 .preview-imgs {
   cursor: pointer;
+  width: 100%;
+  height: auto;
 }
