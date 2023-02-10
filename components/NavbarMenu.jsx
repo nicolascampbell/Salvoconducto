@@ -40,11 +40,12 @@ export const NavbarMenu = () => {
           <div className="menu-detail"></div>
         </div>
         <Slide direction="up" in={openMenu}>
-          <div className="menu-socials mb-3 me-3">
+          <div className="menu-socials mb-3 me-3 ">
             <a
               target="_blank"
               href="mailto:nicolasdsc@protonmail.com"
               rel="noopener noreferrer"
+              className='no-style-link'
             >
               <span className="me-2">Send me an email</span>
               <AlternateEmailIcon />

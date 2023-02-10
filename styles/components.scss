@@ -1,33 +1,3 @@
-.special-col {
-  max-height: 75vh;
-  overflow: scroll;
-  scroll-behavior: smooth;
-  position: static;
-  padding: 0;
-
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-  scrollbar-width: none; /* Firefox */
-
-  &::-webkit-scrollbar {
-    display: none; /* Safari and Chrome */
-  }
-}
-
-.special-col img {
-  position: relative;
-}
-
-.special-col-text {
-  position: absolute;
-  transform: translate(10%, 20%);
-  z-index: 2;
-  width: 80%;
-  max-width: 50ch;
-}
-
-.special-col-text a {
-  margin: 0.5rem;
-}
 .video-responsive {
   overflow: hidden;
   padding-bottom: 56.25%;
@@ -39,41 +9,5 @@
     height: 100%;
     width: 100%;
     position: absolute;
-  }
-}
-
-
-.spinner {
-  aspect-ratio: 1;
-  background-color: $secondary-accent-color;
-
-  -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
-  animation: sk-rotateplane 1.2s infinite ease-in-out;
-}
-
-@-webkit-keyframes sk-rotateplane {
-  0% {
-    -webkit-transform: perspective(120px);
-  }
-  50% {
-    -webkit-transform: perspective(120px) rotateY(180deg);
-  }
-  100% {
-    -webkit-transform: perspective(120px) rotateY(180deg) rotateX(180deg);
-  }
-}
-
-@keyframes sk-rotateplane {
-  0% {
-    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
-    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
-  }
-  50% {
-    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-    -webkit-transform: perspective(120px) rotateX(180.1deg) rotateY(0deg);
-  }
-  100% {
-    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
-    -webkit-transform: perspective(120px) rotateX(180deg) rotateY(179.9deg);
   }
 }
