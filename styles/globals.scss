@@ -1,7 +1,15 @@
+// Required
 @import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap/scss/functions';
 
+// Default variable overrides
 // Variables
 @import './variables.scss';
+
+// Required
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
 // Components
 @import './components/definitions.scss';
 @import './components/navbar.scss';
@@ -13,14 +21,8 @@
 @import './font-faces/roboto-mono.scss';
 // @import './font-faces/roboto.scss';
 // @import './font-faces/manrope.scss';
-// @import './font-faces/jost.scss';
-@import './font-faces/josefin-sans.scss';
-
-:root {
-  --bs-nav-link-color: black;
-  --step0: transparent;
-  --step1: #f56918;
-}
+@import './font-faces/jost.scss';
+// @import './font-faces/josefin-sans.scss';
 
 .responsive-title {
   @media (max-width: 576px) {
@@ -30,7 +32,7 @@
 .no-style-link {
   cursor: pointer;
   text-decoration: none;
-  color: rgb(109, 106, 106);
+  color: inherit;
   &.duck-link:hover {
     color: $duck-color;
   }
@@ -39,21 +41,13 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Josefin Sans', sans-serif !important;
+  font-family:$font-family !important;
   overflow-y: scroll;
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
 .scroll-lock {
   overflow-y: hidden;
-}
-mark {
-  padding: 0 !important;
-  background-color: white !important;
-}
-a {
-  color: inherit;
-  text-decoration: none;
 }
 
 * {
@@ -66,11 +60,21 @@ a {
   }
 
   body {
-    color: black;
-    background: white;
+    color: $primary-font-color;
+    background: tint-color($primary-accent-color, 98%);
   }
 }
 
+@media (prefers-color-scheme: light) {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    color: $primary-font-color;
+    background: tint-color($primary-accent-color, 97%);
+  }
+}
 footer {
   text-align: center;
   padding: 0.5rem;
@@ -80,8 +84,9 @@ footer {
   display: block;
   float: right;
   font-size: 0.8rem;
-  color: rgba(0, 0, 0, 0.736);
+  color:  $primary-font-color;
   font-weight: 200;
+  font-family: $font-family-monospace;
 }
 .preview-imgs {
   cursor: pointer;

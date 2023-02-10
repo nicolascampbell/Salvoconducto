@@ -5,17 +5,17 @@
     padding: 3rem;
   }
   & * {
-    font-family: 'Roboto Mono', monospace;
+    font-family:$font-family-monospace;
   }
 
   .title {
-    color: rgb(71, 70, 70);
+    color: $primary-font-color;
     display: inline-block;
     font-size: 2.5rem;
   }
   .subtitle,
   p {
-    color: rgb(109, 106, 106);
+    color: tint-color($primary-font-color, 30%);
   }
   &.special-definition {
     ol li:first-child::marker {
@@ -32,7 +32,7 @@
     font-size: 0.8rem;
   }
   li {
-    color: rgb(61, 61, 61);
+    color: tint-color($primary-font-color, 15%);
     margin: 0 0 10px 0;
   }
   // a {
