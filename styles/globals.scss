@@ -18,17 +18,16 @@
 // Extras
 @import './Home.module.scss';
 @import './components.scss';
+
 @import './font-faces/roboto-mono.scss';
-@import './font-faces/roboto.scss';
-@import './font-faces/manrope.scss';
-@import 'react-grid-layout/css/styles.css';
-@import 'react-resizable/css/styles.css';
-:root  {
+
 // @import './font-faces/roboto.scss';
 // @import './font-faces/manrope.scss';
 @import './font-faces/jost.scss';
 // @import './font-faces/josefin-sans.scss';
 
+@import 'react-grid-layout/css/styles.css';
+@import 'react-resizable/css/styles.css';
 .responsive-title {
   @media (max-width: 576px) {
     font-size: 7.5vw !important;
