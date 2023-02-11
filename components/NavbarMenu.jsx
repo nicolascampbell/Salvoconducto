@@ -7,10 +7,12 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import Slide from '@mui/material/Slide'
 import Zoom from '@mui/material/Zoom'
 import Masonry from '@mui/lab/Masonry'
+import { useKeyPress } from 'hooks/useKeyPress'
 
 import NavbarBrand from './NavbarBrand'
 export const NavbarMenu = () => {
   const [openMenu, setOpenMenu] = React.useState(false)
+  const escPress = useKeyPress('Escape')
   const router = useRouter()
   const matchesSmallDevices = useMediaQuery('(max-width:768px)')
   const getLink = (path) => `${router.basePath}${path}`
@@ -19,6 +21,9 @@ export const NavbarMenu = () => {
     else document.body.classList.remove('scroll-lock')
     setOpenMenu(shouldOpen)
   }
+  React.useEffect(() => {
+    if (openMenu) handleOpenMenu(false)
+  }, [escPress])
   function navigateAndClose(route) {
     router.push(getLink(route)).then(() => handleOpenMenu(false))
   }
@@ -45,7 +50,7 @@ export const NavbarMenu = () => {
               target="_blank"
               href="mailto:nicolasdsc@protonmail.com"
               rel="noopener noreferrer"
-              className='no-style-link'
+              className="no-style-link"
             >
               <span className="me-2">Send me an email</span>
               <AlternateEmailIcon />
