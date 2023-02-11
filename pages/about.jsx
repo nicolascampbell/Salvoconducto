@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { Unstable_Grid2 as Grid } from '@mui/material' // Grid version 2
 import Definition from '../components/Definition'
 import Image from 'next/image'
-export default function Home() {
+export default function About() {
   const router = useRouter()
   const getLink = (path) => `${router.basePath}${path}`
   return (

@@ -5,14 +5,14 @@ const Collections = () => {
   return (
     <Grid container>
       <Grid xs={12}>
-        <h1 className=" text-center">Coollections Page</h1>
+        <h1 className="text-center">Coollections Page</h1>
       </Grid>
       <Grid xs={12} className="text-center">
         <h5 className="fw-light">
           Is comming soon! Meanwhile you can look at some pictures
         </h5>
       </Grid>
-      <Grid xs={12}>
+      <Grid xs={12} className="mt-5">
         <ImageGrid />
       </Grid>
     </Grid>

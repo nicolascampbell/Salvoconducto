@@ -16,7 +16,6 @@
 // Pages
 @import './pages/misc.scss';
 // Extras
-@import './Home.module.scss';
 @import './components.scss';
 
 @import './font-faces/roboto-mono.scss';
@@ -96,4 +95,7 @@ footer {
   cursor: pointer;
   width: 100%;
   height: auto;
+}
+.cursor-pointer{
+  cursor: pointer;
 }

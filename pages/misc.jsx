@@ -31,14 +31,14 @@ const Miscellaneous = () => {
   return (
     <Grid container justifyContent={'center'}>
       <Grid xs={12}>
-        <h1 className=" text-center">Miscellaneous Page</h1>
+        <h1 className="text-center">Miscellaneous Page</h1>
       </Grid>
       <Grid xs={12} className="text-center">
         <h5 className="fw-light">
           Is comming somewhen! I am still working on it!
         </h5>
       </Grid>
-      <Grid container xs={12} justifyContent="center">
+      <Grid container xs={12} justifyContent="center"  className="mt-5">
         <Stage
           width={300}
           height={300}
