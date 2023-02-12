@@ -4,6 +4,8 @@ import ImageList from './ImageList'
 import Measure from 'react-measure'
 import produce from 'immer'
 import { Responsive, WidthProvider } from 'react-grid-layout'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import 'react-lazy-load-image-component/src/effects/blur.css'
 const ResponsiveGridLayout = WidthProvider(Responsive)
 const EDIT = false
 
@@ -71,7 +73,7 @@ function generateLayout(breakpoints, size, customLayout) {
     {}
   )
 }
-const MeasuredImage = ({ item, onSizeChange }) => {
+const MeasuredImage = ({ item, onSizeChange, minHeight }) => {
   const getLink = (path) => `${path}`
   function handleResize(contentRect) {
     onSizeChange({
@@ -82,12 +84,13 @@ const MeasuredImage = ({ item, onSizeChange }) => {
   return (
     <Measure bounds onResize={handleResize}>
       {({ measureRef }) => (
-        <div ref={measureRef}>
-          <img
+        <div ref={measureRef} style={{ minHeight: minHeight }}>
+          <LazyLoadImage
             src={getLink(item.src)}
             srcSet={getLink(item.src)}
             alt={'Picture of last film'}
             loading="lazy"
+            effect="blur"
             className="preview-imgs"
             onClick={() =>
               window.open(getLink(item.src), '_blank', 'noopener,noreferrer')
@@ -558,6 +561,7 @@ const ImageGrid = () => {
   const [layouts, setLayouts] = React.useState(
     generateLayout(BREAKPOINTS, lastFilm.length, { sm: lastFilmLg })
   )
+
   const [breakpoint, setBreakpoint] = React.useState('sm')
   function handleItemSizeChange(size, index) {
     setLayouts(
@@ -596,6 +600,7 @@ const ImageGrid = () => {
           data-grid={lastFilmLg[index]}
           customChild={
             <MeasuredImage
+              minHeight={lastFilmLg[index].minH * 10}
               item={item}
               onSizeChange={(size) => handleItemSizeChange(size, index)}
             />
