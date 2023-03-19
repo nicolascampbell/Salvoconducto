@@ -11,3 +11,23 @@
     position: absolute;
   }
 }
+.yarl__container {
+  background-color: white;
+}
+.yarl__root {
+  --yarl__color_backdrop: white;
+
+  .yarl__button {
+    filter: none;
+    color: $primary-font-color;
+    &:hover,
+    &:focus,
+    &:focus:not(:focus-visible),
+    &:active {
+      color: $support-accent-color;
+    }
+    &:disabled {
+      color: lighten($support-accent-color, 10%);
+    }
+  }
+}

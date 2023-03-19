@@ -1,6 +1,6 @@
 import React from 'react'
 import { Unstable_Grid2 as Grid } from '@mui/material' // Grid version 2
-import ImageGrid from '../components/ImageGrid'
+import ImageList from '../components/ImageList'
 const Collections = () => {
   return (
     <Grid container>
@@ -13,7 +13,7 @@ const Collections = () => {
         </h5>
       </Grid>
       <Grid xs={12} className="mt-5">
-        <ImageGrid />
+      <ImageList />
       </Grid>
     </Grid>
   )

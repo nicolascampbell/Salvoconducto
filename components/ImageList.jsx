@@ -4,7 +4,9 @@ import ImageList from '@mui/material/ImageList'
 import ImageListItem from '@mui/material/ImageListItem'
 import { useRouter } from 'next/router'
 import useMediaQuery from '@mui/material/useMediaQuery'
-
+import 'yet-another-react-lightbox/styles.css'
+import Lightbox from 'yet-another-react-lightbox'
+import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 function getPhotoWidth(relevance) {
   if (relevance === 0) {
     return '60%'
@@ -17,16 +19,18 @@ function getPhotoWidth(relevance) {
   }
 }
 function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
+  return Math.floor(Math.random() * max)
 }
 export default function MasonryImageList() {
+  const [open, setOpen] = React.useState(false)
   const router = useRouter()
   const getLink = (path) => `${router.basePath}${path}`
   const matchesSmallDevices = useMediaQuery('(max-width:768px)')
+
   return (
     <Box className="d-flex justify-content-center">
       <ImageList variant="masonry" cols={matchesSmallDevices ? 1 : 2} gap={40}>
-        {lastFilm.map((item) => (
+        {lastFilm.map((item, index) => (
           <ImageListItem key={item.src}>
             <img
               src={getLink(item.src)}
@@ -34,18 +38,23 @@ export default function MasonryImageList() {
               alt={'Picture of last film'}
               loading="lazy"
               className="preview-imgs"
-              style={{
-                width: getPhotoWidth(
-                  item.relevance !== null ? item.relevance : getRandomInt(8)
-                )
-              }}
-              onClick={() =>
-                window.open(getLink(item.src), '_blank', 'noopener,noreferrer')
-              }
+              // style={{
+              //   width: getPhotoWidth(
+              //     item.relevance !== null ? item.relevance : getRandomInt(8)
+              //   )
+              // }}
+              onClick={() => setOpen(index)}
             />
           </ImageListItem>
         ))}
       </ImageList>
+      <Lightbox
+        open={open !== null}
+        index={open}
+        close={() => setOpen(null)}
+        slides={lastFilm}
+        plugins={[Zoom]}
+      />
     </Box>
   )
 }
