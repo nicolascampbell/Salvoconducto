@@ -22,7 +22,7 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max)
 }
 export default function MasonryImageList() {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(null)
   const router = useRouter()
   const getLink = (path) => `${router.basePath}${path}`
   const matchesSmallDevices = useMediaQuery('(max-width:768px)')
