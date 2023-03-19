@@ -29,7 +29,7 @@ export default function MasonryImageList() {
 
   return (
     <Box className="d-flex justify-content-center">
-      <ImageList variant="masonry" cols={matchesSmallDevices ? 1 : 2} gap={40}>
+      <ImageList variant="masonry" cols={matchesSmallDevices ? 1 : 3} gap={40}>
         {lastFilm.map((item, index) => (
           <ImageListItem key={item.src}>
             <img
