@@ -26,29 +26,23 @@ function getPhotoWidth(relevance) {
     return '80%'
   } else {
     return '100%'
-}}
+  }
+}
 export default function MasonryImageList({ images, colsAmount = 2 }) {
   const [open, setOpen] = React.useState(null)
   const router = useRouter()
-  const getLink = (path) => `${router.basePath}${path}`
-  const matchesSmallDevices = useMediaQuery('(max-width:768px)')
-  console.log(images)
 
   const pureImages = React.useMemo(() => {
     return purifyApiImages(images)
   }, [images])
   return (
     <Box className="d-flex justify-content-center">
-      <ImageList
-        variant="masonry"
-        gap={10}
-      >
+      <ImageList variant="masonry" gap={10} cols={2}>
         {pureImages.map((image, index) => {
           return (
             <ImageListItem
               key={image.id}
-              
-              sx={{display:'flex', justifyContent:'end'}}
+              sx={{ display: 'flex', justifyContent: 'end' }}
             >
               <img
                 key={image.id}
@@ -60,8 +54,7 @@ export default function MasonryImageList({ images, colsAmount = 2 }) {
                 className="preview-imgs"
                 onClick={() => setOpen(index)}
                 style={{
-                  width: getPhotoWidth(getRandomInt(2,8))
-  
+                  width: getPhotoWidth(getRandomInt(2, 8))
                 }}
               />
             </ImageListItem>
