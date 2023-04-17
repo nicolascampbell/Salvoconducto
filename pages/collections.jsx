@@ -8,12 +8,7 @@ const Collections = () => {
         <h1 className="text-center">Coollections Page</h1>
       </Grid>
       <Grid xs={12} className="text-center">
-        <h5 className="fw-light">
-          Is comming soon! Meanwhile you can look at some pictures
-        </h5>
-      </Grid>
-      <Grid xs={12} className="mt-5">
-      <ImageList />
+        <h5 className="fw-light">Is comming soon!</h5>
       </Grid>
     </Grid>
   )

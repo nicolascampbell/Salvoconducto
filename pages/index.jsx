@@ -2,13 +2,12 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import { Unstable_Grid2 as Grid } from '@mui/material' // Grid version 2
 import Definition from '../components/Definition'
-
 export default function Home() {
   const router = useRouter()
   const getLink = (path) => `${router.basePath}${path}`
 
   return (
-    <Grid container justifyContent={'center'}>
+    <Grid container justifyContent={'center'} className='home-container'>
       <Grid xs={10} sm={7} md={5} lg={4}>
         <Definition
           title={'Salvoconducto'}
