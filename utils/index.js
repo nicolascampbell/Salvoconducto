@@ -3,7 +3,7 @@ export function flattenFilms(films) {
     const coverImage = film.cover.data
     return {
       ...film,
-      src: `http://localhost:1337${coverImage.attributes.url}`,
+      src: `${process.env.API_URL}${coverImage.attributes.url}`,
       height: coverImage.attributes.height,
       width: coverImage.attributes.width,
       imageId: coverImage.id

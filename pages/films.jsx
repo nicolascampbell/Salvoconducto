@@ -35,9 +35,7 @@ const CustomListItem = ({ name, location, date, handleClick }) => (
   </ListItemButton>
 )
 export const getStaticProps = async () => {
-  const resulting = await fetch(
-    `http://localhost:1337/api/films?populate[1]=cover`
-  )
+  const resulting = await fetch(`${process.env.API_URL}/api/films?populate[1]=cover`)
   const { data } = await resulting.json()
 
   return {

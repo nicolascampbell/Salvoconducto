@@ -11,7 +11,7 @@ import { getRandomInt } from 'utils'
 function purifyApiImages(apiImages) {
   console.log('HIE')
   return apiImages.map((image) => ({
-    src: `http://localhost:1337${image.attributes.url}`,
+    src: `${process.env.API_URL}${image.attributes.url}`,
     height: image.attributes.height,
     width: image.attributes.width,
     id: image.id

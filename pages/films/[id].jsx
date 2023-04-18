@@ -4,7 +4,7 @@ import ImageList from '../../components/ImageList'
 import Definition from '../../components/Definition'
 
 export async function getStaticPaths() {
-  const resulting = await fetch(`http://localhost:1337/api/films`)
+  const resulting = await fetch(`${process.env.API_URL}/api/films`)
   const { data } = await resulting.json()
   // Get the paths we want to pre-render based on posts
   const paths = data.map((film, index, films) => ({
@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 }
 async function getFilmData(id) {
   const resulting = await fetch(
-    `http://localhost:1337/api/films/${id}?populate=*`
+    `${process.env.API_URL}/api/films/${id}?populate=*`
   )
   let { data } = await resulting.json()
   if (!data) return null
