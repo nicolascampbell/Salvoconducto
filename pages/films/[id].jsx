@@ -9,9 +9,7 @@ export async function getStaticPaths() {
   // Get the paths we want to pre-render based on posts
   const paths = data.map((film, index, films) => ({
     params: {
-      id: `${film.id}`,
-      prevId: index > 0 ? films[index - 1] : null,
-      nextId: index < films.length - 1 ? films[index + 1] : null
+      id: `${film.id}`
     }
   }))
   console.log(paths)
