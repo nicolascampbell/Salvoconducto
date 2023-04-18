@@ -8,7 +8,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css'
 const ResponsiveGridLayout = WidthProvider(Responsive)
 const EDIT = false
-
+import { API_URL } from 'utils/config'
 function getRandomInt(max) {
   return Math.floor(Math.random() * max)
 }
@@ -99,7 +99,7 @@ const BREAKPOINTS = { sm: 700, xs: 480, xxs: 0 }
 function purifyApiImages(apiImages) {
   console.log('HIE')
   return apiImages.map((image) => ({
-    src: `${process.env.API_URL}${image.attributes.url}`,
+    src: `${API_URL}${image.attributes.url}`,
     height: image.attributes.height,
     width: image.attributes.width,
     id: image.id

@@ -8,10 +8,10 @@ import 'yet-another-react-lightbox/styles.css'
 import Lightbox from 'yet-another-react-lightbox'
 import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 import { getRandomInt } from 'utils'
+import { API_URL } from 'utils/config'
 function purifyApiImages(apiImages) {
-  console.log('HIE')
   return apiImages.map((image) => ({
-    src: `${process.env.API_URL}${image.attributes.url}`,
+    src: `${API_URL}${image.attributes.url}`,
     height: image.attributes.height,
     width: image.attributes.width,
     id: image.id

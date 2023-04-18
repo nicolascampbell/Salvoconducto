@@ -20,6 +20,7 @@ import ArrowDownwardIcon from '@mui/icons-material/South'
 import Definition from '../components/Definition'
 import FilmGrid from '../components/FilmGrid'
 import FilmsPreview from '@/components/FilmsPreview'
+import { API_URL } from 'utils/config'
 import dayjs from 'dayjs'
 const CustomListItem = ({ name, location, date, handleClick }) => (
   <ListItemButton onClick={handleClick}>
@@ -35,7 +36,7 @@ const CustomListItem = ({ name, location, date, handleClick }) => (
   </ListItemButton>
 )
 export const getStaticProps = async () => {
-  const resulting = await fetch(`${process.env.API_URL}/api/films?populate[1]=cover`)
+  const resulting = await fetch(`${API_URL}/api/films?populate[1]=cover`)
   const { data } = await resulting.json()
 
   return {
