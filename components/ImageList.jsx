@@ -12,11 +12,11 @@ import { getRandomInt } from 'utils'
 import 'react-lazy-load-image-component/src/effects/blur.css'
 
 import { API_URL } from 'utils/config'
-function purifyApiImages(apiImages) {
+function purifyApiImages(apiImages, filmKey) {
   return apiImages
     .sort((a, b) => a.attributes.name >= b.attributes.name)
     .map((image) => ({
-      src: `${API_URL}${image.attributes.url}`,
+      src: `/films/${filmKey}/webpLow/${image.attributes.name}`,
       height: image.attributes.height,
       width: image.attributes.width,
       id: image.id
@@ -33,17 +33,17 @@ function getPhotoWidth(relevance) {
     return '100%'
   }
 }
-export default function MasonryImageList({ images, colsAmount = 2 }) {
+export default function ImageListWrapper({ images, filmKey, colsAmount = 2 }) {
   const [open, setOpen] = React.useState(null)
   const router = useRouter()
   const matchesSmallDevices = useMediaQuery('(max-width:768px)')
 
   const pureImages = React.useMemo(() => {
-    return purifyApiImages(images)
+    return purifyApiImages(images, filmKey)
   }, [images])
   return (
     <Box className="d-flex justify-content-center">
-      <ImageList variant="masonry" gap={30} cols={matchesSmallDevices ? 1 : 2}>
+      <ImageList variant="masonry" gap={20} cols={matchesSmallDevices ? 1 : 2}>
         {pureImages.map((image, index) => {
           return (
             <ImageListItem

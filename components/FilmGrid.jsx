@@ -8,7 +8,7 @@ import 'yet-another-react-lightbox/styles.css'
 import Lightbox from 'yet-another-react-lightbox'
 import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 import ImageListItemBar from '@mui/material/ImageListItemBar'
-import { flattenFilms } from 'utils'
+import { flattenFilms, getFilmName } from 'utils'
 export default function FilmGrid({ films, colsAmount = 2 }) {
   const [open, setOpen] = React.useState(null)
   const router = useRouter()
@@ -39,7 +39,7 @@ export default function FilmGrid({ films, colsAmount = 2 }) {
               />
               <ImageListItemBar
                 position="bottom"
-                title={film.title}
+                title={getFilmName(film.key)}
                 subtitle={film.date}
               />
             </ImageListItem>

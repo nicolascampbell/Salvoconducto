@@ -1,1 +1,1 @@
-export const API_URL = process.env.API_URL || 'https://sea-turtle-app-vazoq.ondigitalocean.app'
+export const API_URL = 'http://localhost:1337'
