@@ -8,7 +8,8 @@ import {
   Box,
   Stack,
   ToggleButtonGroup,
-  ToggleButton
+  ToggleButton,
+  Typography
 } from '@mui/material' // Grid version 2
 import { styled } from '@mui/material/styles'
 import { useRouter } from 'next/router'
@@ -22,17 +23,26 @@ import FilmGrid from '../components/FilmGrid'
 import FilmsPreview from '@/components/FilmsPreview'
 import { API_URL } from 'utils/config'
 import dayjs from 'dayjs'
+import { getFilmName } from 'utils'
 const CustomListItem = ({ name, location, date, handleClick }) => (
-  <ListItemButton onClick={handleClick}>
+  <ListItemButton
+    onClick={handleClick}
+    sx={{
+      border: '1px solid hotpink',
+      borderBottom: '2px solid #ff3e9e',
+      borderRight: '3px solid #ff3e9e',
+      marginTop: '1px'
+    }}
+  >
     <Stack
-      direction={'row'}
+      direction={'column'}
       justifyContent={'space-between'}
-      sx={{ width: '100%' }}
+      sx={{ flex: '1 1' }}
     >
-      <span>{name}</span>
-      <span>{location}</span>
-      <span>{dayjs(date).format('MM/YYYY')}</span>
+      <Typography variant="subtitle1">{name}</Typography>
+      <Typography variant="caption">{location}</Typography>
     </Stack>
+    <Typography variant="body2">{dayjs(date).format('MMMM YYYY')}</Typography>
   </ListItemButton>
 )
 export const getStaticProps = async () => {
@@ -43,8 +53,8 @@ export const getStaticProps = async () => {
     props: {
       films: data
         .map((film) => {
-          const { title, date, location, visible, key, cover } = film.attributes
-          return { id: film.id, key, title, date, location, visible, cover }
+          const { date, location, visible, key, cover } = film.attributes
+          return { id: film.id, key, date, location, visible, cover }
         })
         .filter((film) => film.visible)
     }
@@ -110,8 +120,14 @@ const Films = ({ films }) => {
         </Grid>
       </Grid>
 
-      <Grid xs={12}>
-        <Grid container xs={12} justifyContent={'end'} alignContent={'start'}>
+      <Grid xs={12} container justifyContent={'center'}>
+        <Grid
+          container
+          xs={12}
+          lg={8}
+          justifyContent={'end'}
+          alignContent={'start'}
+        >
           <Button
             variant="text"
             size="small"
@@ -143,13 +159,13 @@ const Films = ({ films }) => {
             </ToggleButton>
           </StyledToggleButtonGroup>
         </Grid>
-        <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
+        <Grid xs={12} md={10} lg={8}>
           {view === VIEW.LIST ? (
             <List>
               {orderedFilms.map((film) => (
                 <CustomListItem
                   key={film.id}
-                  name={film.title}
+                  name={getFilmName(film.key)}
                   location={film.location}
                   date={film.date}
                   handleClick={() => router.push(`/films/${film.id}`)}
@@ -159,7 +175,7 @@ const Films = ({ films }) => {
           ) : (
             <FilmGrid films={orderedFilms} colsAmount={3} />
           )}
-        </Box>
+        </Grid>
       </Grid>
     </Grid>
   )

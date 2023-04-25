@@ -4,7 +4,7 @@ export function flattenFilms(films) {
     const coverImage = film.cover.data
     return {
       ...film,
-      src: `${API_URL}${coverImage.attributes.url}`,
+      src: `/films/${film.key}/webpLow/${coverImage.attributes.name}`,
       height: coverImage.attributes.height,
       width: coverImage.attributes.width,
       imageId: coverImage.id
@@ -14,3 +14,4 @@ export function flattenFilms(films) {
 export function getRandomInt(min = 0, max) {
   return Math.floor(Math.random() * max)
 }
+export const getFilmName = (filmKey) => `Film ${filmKey}`
