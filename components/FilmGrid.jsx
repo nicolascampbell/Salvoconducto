@@ -22,7 +22,7 @@ export default function FilmGrid({ films, colsAmount = 2 }) {
       <ImageList
         variant="masonry"
         cols={matchesSmallDevices ? 1 : colsAmount}
-        gap={40}
+        gap={10}
       >
         {flatFilms.map((film, index) => {
           return (
