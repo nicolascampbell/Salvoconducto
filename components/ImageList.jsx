@@ -8,7 +8,6 @@ import 'yet-another-react-lightbox/styles.css'
 import Lightbox from 'yet-another-react-lightbox'
 import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import { getRandomInt } from 'utils'
 import 'react-lazy-load-image-component/src/effects/blur.css'
 
 import { API_URL } from 'utils/config'
@@ -22,17 +21,7 @@ function purifyApiImages(apiImages, filmKey) {
       id: image.id
     }))
 }
-function getPhotoWidth(relevance) {
-  if (relevance === 0) {
-    return '60%'
-  } else if (relevance <= 1) {
-    return '70%'
-  } else if (relevance === 2) {
-    return '80%'
-  } else {
-    return '100%'
-  }
-}
+
 export default function ImageListWrapper({ images, filmKey, colsAmount = 2 }) {
   const [open, setOpen] = React.useState(null)
   const router = useRouter()
