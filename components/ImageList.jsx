@@ -7,6 +7,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import 'yet-another-react-lightbox/styles.css'
 import Lightbox from 'yet-another-react-lightbox'
 import Zoom from 'yet-another-react-lightbox/plugins/zoom'
+import Download from 'yet-another-react-lightbox/plugins/download'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css'
 
@@ -58,7 +59,7 @@ export default function ImageListWrapper({ images, filmKey, colsAmount = 2 }) {
         index={open}
         close={() => setOpen(null)}
         slides={pureImages}
-        plugins={[Zoom]}
+        plugins={[Zoom, Download]}
       />
     </Box>
   )
