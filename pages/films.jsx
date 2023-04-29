@@ -13,7 +13,7 @@ import {
 } from '@mui/material' // Grid version 2
 import { styled } from '@mui/material/styles'
 import { useRouter } from 'next/router'
-
+import useLocalStorage from 'use-local-storage'
 import ViewListIcon from '@mui/icons-material/ViewList'
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt'
 import ArrowUpwardIcon from '@mui/icons-material/North'
@@ -83,7 +83,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
 const Films = ({ films }) => {
   const router = useRouter()
   const [view, setView] = React.useState(VIEW.LIST)
-  const [orderDesc, setOrderDesc] = React.useState(true)
+  const [orderDesc, setOrderDesc] = useLocalStorage('dateOrder', true)
   function handleChangeView(event, nextView) {
     setView(nextView)
   }
@@ -96,6 +96,7 @@ const Films = ({ films }) => {
           : Number(new Date(b.date)) - Number(new Date(a.date))
       )
   }, [orderDesc])
+
   return (
     <Grid container spacing={2}>
       <Grid
