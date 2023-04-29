@@ -16,6 +16,7 @@ import { useRouter } from 'next/router'
 import useLocalStorage from 'use-local-storage'
 import ViewListIcon from '@mui/icons-material/ViewList'
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt'
+import VisibilityIcon from '@mui/icons-material/Visibility'
 import ArrowUpwardIcon from '@mui/icons-material/North'
 import ArrowDownwardIcon from '@mui/icons-material/South'
 import Definition from '../components/Definition'
@@ -24,7 +25,14 @@ import FilmsPreview from '@/components/FilmsPreview'
 import { API_URL } from 'utils/config'
 import dayjs from 'dayjs'
 import { getFilmName } from 'utils'
-const CustomListItem = ({ name, location, date, handleClick }) => (
+import produce from 'immer'
+const CustomListItem = ({
+  name,
+  location,
+  date,
+  handleClick,
+  wasSeen = false
+}) => (
   <ListItemButton
     onClick={handleClick}
     sx={{
@@ -39,7 +47,14 @@ const CustomListItem = ({ name, location, date, handleClick }) => (
       justifyContent={'space-between'}
       sx={{ flex: '1 1' }}
     >
-      <Typography variant="subtitle1">{name}</Typography>
+      <Typography variant="subtitle1">
+        {name}
+        {wasSeen && (
+          <VisibilityIcon
+            sx={{ mx: 1, fontSize: '0.95rem', color: '#916bb6' }}
+          />
+        )}
+      </Typography>
       <Typography variant="caption">{location}</Typography>
     </Stack>
     <Typography variant="body2">{dayjs(date).format('MMMM YYYY')}</Typography>
@@ -84,6 +99,7 @@ const Films = ({ films }) => {
   const router = useRouter()
   const [view, setView] = React.useState(VIEW.LIST)
   const [orderDesc, setOrderDesc] = useLocalStorage('dateOrder', true)
+  const [seenFilms, setSeenFilms] = useLocalStorage('seenFilms', [])
   function handleChangeView(event, nextView) {
     setView(nextView)
   }
@@ -96,7 +112,17 @@ const Films = ({ films }) => {
           : Number(new Date(b.date)) - Number(new Date(a.date))
       )
   }, [orderDesc])
-
+  function handleSetSeenFilms(id) {
+    setSeenFilms(
+      produce((draft) => {
+        draft.push(id)
+      })
+    )
+  }
+  function handleClickFilm(id) {
+    router.push(`/films/${id}`)
+    handleSetSeenFilms(id)
+  }
   return (
     <Grid container spacing={2}>
       <Grid
@@ -169,12 +195,18 @@ const Films = ({ films }) => {
                   name={getFilmName(film.key)}
                   location={film.location}
                   date={film.date}
-                  handleClick={() => router.push(`/films/${film.id}`)}
+                  handleClick={() => handleClickFilm(film.id)}
+                  wasSeen={seenFilms.indexOf(film.id) !== -1}
                 />
               ))}
             </List>
           ) : (
-            <FilmGrid films={orderedFilms} colsAmount={3} />
+            <FilmGrid
+              films={orderedFilms}
+              colsAmount={3}
+              handleClickFilm={handleClickFilm}
+              wasSeen={(id) => seenFilms.indexOf(id) !== -1}
+            />
           )}
         </Grid>
       </Grid>
