@@ -3,6 +3,7 @@ import 'styles/globals.scss'
 import SSRProvider from 'react-bootstrap/SSRProvider'
 import { Unstable_Grid2 as Grid } from '@mui/material' // Grid version 2
 import { Footer } from '../components/Footer'
+import { usePreserveScroll } from 'hooks/usePreserveScroll'
 import NavbarMenu from 'components/NavbarMenu'
 import Head from 'next/head'
 import {
@@ -18,8 +19,8 @@ const theme = extendTheme({
         primary: {
           main: '#916bb6'
         },
-        supportAccent:{
-          main:'#ff69b4'
+        supportAccent: {
+          main: '#ff69b4'
         }
       }
     },
@@ -34,6 +35,8 @@ const theme = extendTheme({
 })
 
 function MyApp({ Component, pageProps }) {
+  usePreserveScroll()
+
   return (
     <SSRProvider>
       <CssVarsProvider theme={theme}>
