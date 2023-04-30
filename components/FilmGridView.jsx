@@ -6,6 +6,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import ImageListItemBar from '@mui/material/ImageListItemBar'
 import { flattenFilms, getFilmName } from 'utils'
 import VisibilityIcon from '@mui/icons-material/Visibility'
+import CustomImage from '@/components/CustomImage'
 
 export default function FilmGridView({
   films,
@@ -32,16 +33,16 @@ export default function FilmGridView({
         {flatFilms.map((film, index) => {
           return (
             <ImageListItem key={film.imageId}>
-              <img
-                key={film.imageId}
-                src={film.src}
-                height={film.height}
-                width={film.width}
-                alt={'Picture of last film'}
-                loading="lazy"
-                className="preview-imgs"
-                onClick={() => handleClickFilm(film)}
-              />{' '}
+              <Box>
+                <CustomImage
+                  key={film.imageId}
+                  src={film.src}
+                  width={'100%'}
+                  alt={'Picture of last film'}
+                  handleOnClick={() => handleClickFilm(film)}
+                />
+              </Box>
+
               <ImageListItemBar
                 position="bottom"
                 title={getFilmName(film.key)}

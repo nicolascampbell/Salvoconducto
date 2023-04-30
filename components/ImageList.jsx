@@ -8,10 +8,8 @@ import 'yet-another-react-lightbox/styles.css'
 import Lightbox from 'yet-another-react-lightbox'
 import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 import Download from 'yet-another-react-lightbox/plugins/download'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
-import 'react-lazy-load-image-component/src/effects/blur.css'
+import CustomImage from '@/components/CustomImage'
 
-import { API_URL } from 'utils/config'
 function purifyApiImages(apiImages, filmKey) {
   return apiImages
     .sort((a, b) => a.attributes.name >= b.attributes.name)
@@ -38,17 +36,18 @@ export default function ImageListWrapper({ images, filmKey, colsAmount = 2 }) {
           return (
             <ImageListItem
               key={image.id}
-              sx={{ display: 'flex', justifyContent: 'end' }}
+              sx={{
+                display: 'flex',
+                justifyContent: 'end'
+              }}
             >
-              <LazyLoadImage
+              <CustomImage
                 key={image.id}
                 src={image.src}
                 width={image.width}
                 alt={'Picture of last film'}
-                loading="lazy"
                 className="preview-imgs"
-                onClick={() => setOpen(index)}
-                effect="blur"
+                handleOnClick={() => setOpen(index)}
               />
             </ImageListItem>
           )

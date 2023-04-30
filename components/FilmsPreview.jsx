@@ -1,12 +1,13 @@
 import * as React from 'react'
 import Box from '@mui/material/Box'
 import { useRouter } from 'next/router'
-import { flattenFilms, getRandomInt } from 'utils'
-import Carousel from 'react-bootstrap/Carousel'
+import { flattenFilms } from 'utils'
 import { Swiper, SwiperSlide } from 'swiper/react'
 // Import Swiper styles
 import 'swiper/swiper-bundle.min.css'
 import { Autoplay, EffectFade } from 'swiper'
+import CustomImage from '@/components/CustomImage'
+
 export default function FilmsPreview({ films }) {
   const router = useRouter()
   const flatFilms = React.useMemo(() => {
@@ -35,14 +36,12 @@ export default function FilmsPreview({ films }) {
         {flatFilms.map((film, index) => {
           return (
             <SwiperSlide key={film.imageId}>
-              <img
+              <CustomImage
                 key={film.imageId}
                 src={film.src}
-                height={film.height}
-                width={film.width}
-                alt={'Picture of last film'}
-                loading="lazy"
-                className="preview-imgs"
+                height={'100%'}
+                alt={'Preview of film' + film.key}
+                customStyle={{ transform: 'scale(1.02)' }}
               />
             </SwiperSlide>
           )
