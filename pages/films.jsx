@@ -2,64 +2,28 @@ import React from 'react'
 import {
   Unstable_Grid2 as Grid,
   Divider,
-  List,
   Button,
-  ListItemButton,
-  Box,
-  Stack,
   ToggleButtonGroup,
-  ToggleButton,
-  Typography
+  ToggleButton
 } from '@mui/material' // Grid version 2
 import { styled } from '@mui/material/styles'
 import { useRouter } from 'next/router'
 import useLocalStorage from 'use-local-storage'
-import ViewListIcon from '@mui/icons-material/ViewList'
-import ViewQuiltIcon from '@mui/icons-material/ViewQuilt'
-import VisibilityIcon from '@mui/icons-material/Visibility'
-import ArrowUpwardIcon from '@mui/icons-material/North'
-import ArrowDownwardIcon from '@mui/icons-material/South'
+import {
+  ViewList as ViewListIcon,
+  ViewQuilt as ViewQuiltIcon,
+  North as ArrowUpwardIcon,
+  South as ArrowDownwardIcon
+} from '@mui/icons-material'
+
 import Definition from '../components/Definition'
-import FilmGrid from '../components/FilmGrid'
+
+import FilmGridView from '@/components/FilmGridView'
+import FilmListView from '@/components/FilmListView'
 import FilmsPreview from '@/components/FilmsPreview'
 import { API_URL } from 'utils/config'
-import dayjs from 'dayjs'
-import { getFilmName } from 'utils'
 import produce from 'immer'
-const CustomListItem = ({
-  name,
-  location,
-  date,
-  handleClick,
-  wasSeen = false
-}) => (
-  <ListItemButton
-    onClick={handleClick}
-    sx={{
-      border: '1px solid hotpink',
-      borderBottom: '2px solid #ff3e9e',
-      borderRight: '3px solid #ff3e9e',
-      marginTop: '1px'
-    }}
-  >
-    <Stack
-      direction={'column'}
-      justifyContent={'space-between'}
-      sx={{ flex: '1 1' }}
-    >
-      <Typography variant="subtitle1">
-        {name}
-        {wasSeen && (
-          <VisibilityIcon
-            sx={{ mx: 1, fontSize: '0.95rem', color: '#916bb6' }}
-          />
-        )}
-      </Typography>
-      <Typography variant="caption">{location}</Typography>
-    </Stack>
-    <Typography variant="body2">{dayjs(date).format('MMMM YYYY')}</Typography>
-  </ListItemButton>
-)
+
 export const getStaticProps = async () => {
   const resulting = await fetch(`${API_URL}/api/films?populate[1]=cover`)
   const { data } = await resulting.json()
@@ -97,9 +61,9 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
 
 const Films = ({ films }) => {
   const router = useRouter()
-  const [view, setView] = React.useState(VIEW.LIST)
-  const [orderDesc, setOrderDesc] = useLocalStorage('dateOrder', true)
-  const [seenFilms, setSeenFilms] = useLocalStorage('seenFilms', [])
+  const [view, setView] = useLocalStorage('configGridView', VIEW.LIST)
+  const [orderDesc, setOrderDesc] = useLocalStorage('configDateOrder', true)
+  const [seenFilms, setSeenFilms] = useLocalStorage('configSeenFilms', [])
   function handleChangeView(event, nextView) {
     setView(nextView)
   }
@@ -122,6 +86,9 @@ const Films = ({ films }) => {
   function handleClickFilm(id) {
     router.push(`/films/${id}`)
     handleSetSeenFilms(id)
+  }
+  function wasFilmSeen(filmId) {
+    return seenFilms.indexOf(filmId) !== -1 || false
   }
   return (
     <Grid container spacing={2}>
@@ -164,7 +131,7 @@ const Films = ({ films }) => {
             disableElevation
             disableRipple
           >
-            Date{' '}
+            Date
             {orderDesc ? (
               <ArrowUpwardIcon sx={{ width: '0.8rem', height: '0.8rem' }} />
             ) : (
@@ -188,24 +155,17 @@ const Films = ({ films }) => {
         </Grid>
         <Grid xs={12} md={10} lg={8}>
           {view === VIEW.LIST ? (
-            <List>
-              {orderedFilms.map((film) => (
-                <CustomListItem
-                  key={film.id}
-                  name={getFilmName(film.key)}
-                  location={film.location}
-                  date={film.date}
-                  handleClick={() => handleClickFilm(film.id)}
-                  wasSeen={seenFilms.indexOf(film.id) !== -1}
-                />
-              ))}
-            </List>
+            <FilmListView
+              films={orderedFilms}
+              handleClickFilm={handleClickFilm}
+              wasSeen={wasFilmSeen}
+            />
           ) : (
-            <FilmGrid
+            <FilmGridView
               films={orderedFilms}
               colsAmount={3}
               handleClickFilm={handleClickFilm}
-              wasSeen={(id) => seenFilms.indexOf(id) !== -1}
+              wasSeen={wasFilmSeen}
             />
           )}
         </Grid>

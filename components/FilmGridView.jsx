@@ -2,27 +2,26 @@ import * as React from 'react'
 import Box from '@mui/material/Box'
 import ImageList from '@mui/material/ImageList'
 import ImageListItem from '@mui/material/ImageListItem'
-import { useRouter } from 'next/router'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import 'yet-another-react-lightbox/styles.css'
-import Lightbox from 'yet-another-react-lightbox'
-import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 import ImageListItemBar from '@mui/material/ImageListItemBar'
 import { flattenFilms, getFilmName } from 'utils'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 
-export default function FilmGrid({
+export default function FilmGridView({
   films,
   colsAmount = 2,
   handleClickFilm,
   wasSeen
 }) {
-  const [open, setOpen] = React.useState(null)
   const matchesSmallDevices = useMediaQuery('(max-width:768px)')
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => setMounted(true), [])
 
   const flatFilms = React.useMemo(() => {
     return flattenFilms(films)
   }, [films])
+  if (!mounted) return null
   return (
     <Box className="d-flex justify-content-center">
       <ImageList
@@ -45,15 +44,13 @@ export default function FilmGrid({
               />{' '}
               <ImageListItemBar
                 position="bottom"
-                title={
-                  <span>
-                    {getFilmName(film.key)}{' '}
-                    {wasSeen(film.id) && (
-                      <VisibilityIcon
-                        sx={{ mx: 1, fontSize: '0.95rem', color: '#916bb6' }}
-                      />
-                    )}
-                  </span>
+                title={getFilmName(film.key)}
+                actionIcon={
+                  wasSeen(film.id) && (
+                    <VisibilityIcon
+                      sx={{ mx: 1, fontSize: '0.95rem', color: '#916bb6' }}
+                    />
+                  )
                 }
                 subtitle={film.date}
               />
