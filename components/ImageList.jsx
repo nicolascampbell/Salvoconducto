@@ -59,6 +59,8 @@ export default function ImageListWrapper({ images, filmKey, colsAmount = 2 }) {
         close={() => setOpen(null)}
         slides={pureImages}
         plugins={[Zoom, Download]}
+        animation={{ fade: 100, swipe: 250 }}
+        controller={{ closeOnBackdropClick: true }}
       />
     </Box>
   )
