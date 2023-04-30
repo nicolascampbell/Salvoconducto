@@ -28,8 +28,9 @@ async function getFilmData(filmKey) {
   const resulting = await fetch(`${API_URL}/api/films/${filmKey}?populate=*`)
   let { data } = await resulting.json()
   if (!data) return null
-  let { date, location, visible, images, key } = data.attributes
-  return { date, location, visible, images, key }
+  let { date, location, visible, images, key, comments, filmType } =
+    data.attributes
+  return { date, location, visible, images, key, comments, filmType }
 }
 async function getNextPrevFilmKey(filmKey) {
   const films = await getAllFilms()
@@ -52,6 +53,12 @@ export const getStaticProps = async (context) => {
 }
 const Films = ({ film, nextFilmKey, prevFilmKey }) => {
   const router = useRouter()
+  const definitions = React.useMemo(() => {
+    let tempDef = [`Location ${film.location}`, `Taken on ${film.date}`]
+    if (film.filmType) tempDef.push(film.filmType)
+    if (film.comments) tempDef.push(film.comments)
+    return tempDef
+  }, [film.key])
   return (
     <Grid container>
       <Grid xs={4} xsOffset={1} lgOffset={0} container alignContent={'end'}>
@@ -67,7 +74,7 @@ const Films = ({ film, nextFilmKey, prevFilmKey }) => {
           title={getFilmName(film.key)}
           subtitle={<span>[{getFilmName(film.key)}]</span>}
           type={'Film'}
-          definitions={[`Location ${film.location}`, `Taken on ${film.date}`]}
+          definitions={definitions}
         />
       </Grid>
       <Grid xs={12} className="mt-5">
