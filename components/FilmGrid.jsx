@@ -61,13 +61,6 @@ export default function FilmGrid({
           )
         })}
       </ImageList>
-      <Lightbox
-        open={open !== null}
-        index={open}
-        close={() => setOpen(null)}
-        slides={flatFilms}
-        plugins={[Zoom]}
-      />
     </Box>
   )
 }

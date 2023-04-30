@@ -7,8 +7,13 @@ export default function Home() {
   const getLink = (path) => `${router.basePath}${path}`
 
   return (
-    <Grid container justifyContent={'center'} className='home-container'>
-      <Grid xs={10} sm={7} md={5} lg={4}>
+    <Grid
+      container
+      justifyContent={'center'}
+      alignContent={'center'}
+      sx={{ height: '100%' }}
+    >
+      <Grid xs={10} sm={7} md={6} lg={4} sx={{ height: 'fit-content' }}>
         <Definition
           title={'Salvoconducto'}
           subtitle={
