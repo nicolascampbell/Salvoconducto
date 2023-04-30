@@ -53,12 +53,12 @@ const FilmListView = ({ films, handleClickFilm, wasSeen }) => {
     <List>
       {films.map((film) => (
         <CustomListItem
-          key={film.id}
+          key={film.key}
           name={getFilmName(film.key)}
           location={film.location}
           date={film.date}
-          handleClick={() => handleClickFilm(film.id)}
-          wasSeen={wasSeen(film.id)}
+          handleClick={() => handleClickFilm(film)}
+          wasSeen={wasSeen(film.key)}
         />
       ))}
     </List>

@@ -40,13 +40,13 @@ export default function FilmGridView({
                 alt={'Picture of last film'}
                 loading="lazy"
                 className="preview-imgs"
-                onClick={() => handleClickFilm(film.id)}
+                onClick={() => handleClickFilm(film)}
               />{' '}
               <ImageListItemBar
                 position="bottom"
                 title={getFilmName(film.key)}
                 actionIcon={
-                  wasSeen(film.id) && (
+                  wasSeen(film.key) && (
                     <VisibilityIcon
                       sx={{ mx: 1, fontSize: '0.95rem', color: '#916bb6' }}
                     />

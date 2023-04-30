@@ -33,7 +33,7 @@ export const getStaticProps = async () => {
       films: data
         .map((film) => {
           const { date, location, visible, key, cover } = film.attributes
-          return { id: film.id, key, date, location, visible, cover }
+          return {  key, date, location, visible, cover }
         })
         .filter((film) => film.visible)
     }
@@ -76,19 +76,19 @@ const Films = ({ films }) => {
           : Number(new Date(b.date)) - Number(new Date(a.date))
       )
   }, [orderDesc])
-  function handleSetSeenFilms(id) {
+  function handleSetSeenFilms(key) {
     setSeenFilms(
       produce((draft) => {
-        draft.push(id)
+        draft.push(key)
       })
     )
   }
-  function handleClickFilm(id) {
-    router.push(`/films/${id}`)
-    handleSetSeenFilms(id)
+  function handleClickFilm({ key }) {
+    router.push(`/films/${key}`)
+    handleSetSeenFilms(key)
   }
-  function wasFilmSeen(filmId) {
-    return seenFilms.indexOf(filmId) !== -1 || false
+  function wasFilmSeen(filmKey) {
+    return seenFilms.indexOf(filmKey) !== -1 || false
   }
   return (
     <Grid container spacing={2}>

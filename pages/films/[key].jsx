@@ -1,7 +1,7 @@
 import React from 'react'
 import { Unstable_Grid2 as Grid, Button } from '@mui/material' // Grid version 2
-import ImageList from '../../components/ImageList'
-import Definition from '../../components/Definition'
+import ImageList from '@/components/ImageList'
+import Definition from '@/components/Definition'
 import { API_URL } from 'utils/config'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
 import { useRouter } from 'next/router'
@@ -11,8 +11,6 @@ import SpeedDial from '@mui/material/SpeedDial'
 import SpeedDialIcon from '@mui/material/SpeedDialIcon'
 import SpeedDialAction from '@mui/material/SpeedDialAction'
 import {
-  ViewList as ViewListIcon,
-  ViewQuilt as ViewQuiltIcon,
   North as ArrowUpwardIcon,
   KeyboardReturn as KeyboardReturnIcon
 } from '@mui/icons-material'
@@ -66,7 +64,7 @@ export async function getStaticPaths() {
   // Get the paths we want to pre-render based on posts
   const paths = data.map((film, index, films) => ({
     params: {
-      id: `${film.id}`
+      key: `${film.key}`
     }
   }))
   // We'll pre-render only these paths at build time.
@@ -74,8 +72,8 @@ export async function getStaticPaths() {
   // on-demand if the path doesn't exist.
   return { paths, fallback: 'blocking' }
 }
-async function getFilmData(id) {
-  const resulting = await fetch(`${API_URL}/api/films/${id}?populate=*`)
+async function getFilmData(filmKey) {
+  const resulting = await fetch(`${API_URL}/api/films/${filmKey}?populate=*`)
   let { data } = await resulting.json()
   if (!data) return null
   let { date, location, visible, images, key } = data.attributes
@@ -84,7 +82,7 @@ async function getFilmData(id) {
 export const getStaticProps = async (context) => {
   const props = {}
 
-  props['film'] = await getFilmData(context.params.id)
+  props['film'] = await getFilmData(context.params.key)
 
   return {
     props
