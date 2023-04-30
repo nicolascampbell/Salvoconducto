@@ -10,7 +10,12 @@ import Box from '@mui/material/Box'
 import SpeedDial from '@mui/material/SpeedDial'
 import SpeedDialIcon from '@mui/material/SpeedDialIcon'
 import SpeedDialAction from '@mui/material/SpeedDialAction'
-import NorthIcon from '@mui/icons-material/North'
+import {
+  ViewList as ViewListIcon,
+  ViewQuilt as ViewQuiltIcon,
+  North as ArrowUpwardIcon,
+  KeyboardReturn as KeyboardReturnIcon
+} from '@mui/icons-material'
 import BakeryDiningIcon from '@mui/icons-material/BakeryDining'
 import { getFilmName } from 'utils'
 export const BasicSpeedDial = ({ goBackAction }) => {
@@ -24,8 +29,8 @@ export const BasicSpeedDial = ({ goBackAction }) => {
       })
   }
   const actions = [
-    { icon: <NorthIcon />, name: 'Top', onClick: handleScrollTop },
-    { icon: <KeyboardBackspaceIcon />, name: 'Back', onClick: goBackAction }
+    { icon: <ArrowUpwardIcon />, name: 'Top', onClick: handleScrollTop },
+    { icon: <KeyboardReturnIcon />, name: 'Back', onClick: goBackAction }
   ]
   return (
     <Box
@@ -74,7 +79,7 @@ async function getFilmData(id) {
   let { data } = await resulting.json()
   if (!data) return null
   let { date, location, visible, images, key } = data.attributes
-  return {  date, location, visible, images, key }
+  return { date, location, visible, images, key }
 }
 export const getStaticProps = async (context) => {
   const props = {}
@@ -108,7 +113,7 @@ const Films = ({ film }) => {
       <Grid xs={12} className="mt-5">
         <ImageList images={film.images.data} filmKey={film.key} />
       </Grid>
-      <BasicSpeedDial goBackAction={() => router.push(`/films`)} />
+      <BasicSpeedDial goBackAction={router.back} />
     </Grid>
   )
 }
