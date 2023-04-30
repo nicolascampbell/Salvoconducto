@@ -23,19 +23,12 @@ import FilmListView from '@/components/FilmListView'
 import FilmsPreview from '@/components/FilmsPreview'
 import { API_URL } from 'utils/config'
 import produce from 'immer'
-
+import { getAllFilms, sortFilms } from 'utils'
 export const getStaticProps = async () => {
-  const resulting = await fetch(`${API_URL}/api/films?populate[1]=cover`)
-  const { data } = await resulting.json()
-
+  const films = await getAllFilms()
   return {
     props: {
-      films: data
-        .map((film) => {
-          const { date, location, visible, key, cover } = film.attributes
-          return {  key, date, location, visible, cover }
-        })
-        .filter((film) => film.visible)
+      films
     }
   }
 }
@@ -68,13 +61,7 @@ const Films = ({ films }) => {
     setView(nextView)
   }
   const orderedFilms = React.useMemo(() => {
-    return [...films]
-      .sort((a, b) => (orderDesc ? a.key - b.key : b.key - a.key))
-      .sort((a, b) =>
-        orderDesc
-          ? Number(new Date(a.date)) - Number(new Date(b.date))
-          : Number(new Date(b.date)) - Number(new Date(a.date))
-      )
+    return sortFilms(films, orderDesc)
   }, [orderDesc])
   function handleSetSeenFilms(key) {
     setSeenFilms(
@@ -84,7 +71,12 @@ const Films = ({ films }) => {
     )
   }
   function handleClickFilm({ key }) {
-    router.push(`/films/${key}`)
+    router.push({
+      pathname: '/films/[key]',
+      query: {
+        key: key
+      }
+    })
     handleSetSeenFilms(key)
   }
   function wasFilmSeen(filmKey) {
