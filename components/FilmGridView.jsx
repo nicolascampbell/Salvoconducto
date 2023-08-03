@@ -33,15 +33,14 @@ export default function FilmGridView({
         {flatFilms.map((film, index) => {
           return (
             <ImageListItem key={film.imageId}>
-              <Box>
-                <CustomImage
-                  key={film.imageId}
-                  src={film.src}
-                  width={'100%'}
-                  alt={'Picture of last film'}
-                  handleOnClick={() => handleClickFilm(film)}
-                />
-              </Box>
+              <CustomImage
+                key={film.imageId}
+                src={film.src}
+                width={'1500px'}
+                height={'1000px'}
+                alt={'Preview of film' + film.key}
+                handleOnClick={() => handleClickFilm(film)}
+              />
 
               <ImageListItemBar
                 position="bottom"

@@ -25,17 +25,16 @@ export default function ImageListWrapper({ images, filmKey, colsAmount = 2 }) {
   }, [images])
   return (
     <React.Fragment>
-      <Grid xs={12} container spacing={2}>
-        {pureImages.map((image, index) => {
+      <Grid xs={12} container spacing={2} justifyContent={'center'}>
+        {pureImages.map((image, index, imageArray) => {
           return (
-            <Grid xs={12} md={6}>
+            <Grid xs={12} md={(image.height>image.width)?3:6}>
               <CustomImage
                 key={image.id}
                 src={image.src}
                 width={image.width}
                 height={image.height}
                 alt={'Picture of last film'}
-                className="preview-imgs"
                 handleOnClick={() => setOpen(index)}
               />
             </Grid>

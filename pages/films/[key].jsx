@@ -60,16 +60,15 @@ const Films = ({ film, nextFilmKey, prevFilmKey }) => {
     return tempDef
   }, [film.key])
   return (
-    <Grid container>
-      <Grid xs={4} xsOffset={1} lgOffset={0} container alignContent={'end'}>
+    <Grid container justifyContent={'center'}>
+
+      <Grid xs={10}  lg={6} >
         <Button
           startIcon={<KeyboardReturnIcon />}
           onClick={() => router.push('/films')}
         >
           Back to films
         </Button>
-      </Grid>
-      <Grid xs={10} xsOffset={1} lg={4} lgOffset={0}>
         <Definition
           title={getFilmName(film.key)}
           subtitle={<span>[{getFilmName(film.key)}]</span>}

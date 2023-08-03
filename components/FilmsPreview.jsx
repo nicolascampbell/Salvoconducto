@@ -39,7 +39,8 @@ export default function FilmsPreview({ films }) {
               <CustomImage
                 key={film.imageId}
                 src={film.src}
-                height={'100%'}
+                width={'1500px'}
+                height={'1000px'}
                 alt={'Preview of film' + film.key}
                 customStyle={{ transform: 'scale(1.02)' }}
               />
