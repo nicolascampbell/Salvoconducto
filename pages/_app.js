@@ -1,6 +1,5 @@
 import 'styles/globals.scss'
 
-import SSRProvider from 'react-bootstrap/SSRProvider'
 import { Unstable_Grid2 as Grid } from '@mui/material' // Grid version 2
 import { Footer } from '../components/Footer'
 import { usePreserveScroll } from 'hooks/usePreserveScroll'
@@ -38,27 +37,21 @@ function MyApp({ Component, pageProps }) {
   usePreserveScroll()
 
   return (
-    <SSRProvider>
-      <CssVarsProvider theme={theme}>
-        <Head>
-          <title>Salvoconducto</title>
-          <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg" />
-          <link
-            rel="icon"
-            type="image/png"
-            href="../favicon/favicon.png"
-          ></link>
-        </Head>
-        <Grid item xs={12}>
-          <NavbarMenu />
+    <CssVarsProvider theme={theme}>
+      <Head>
+        <title>Salvoconducto</title>
+        <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg" />
+        <link rel="icon" type="image/png" href="../favicon/favicon.png"></link>
+      </Head>
+      <Grid xs={12}>
+        <NavbarMenu />
+      </Grid>
+      <Grid padding={2} container style={{ height: '100vh' }}>
+        <Grid xs={12}>
+          <Component {...pageProps} />
         </Grid>
-        <Grid padding={2} container style={{ height: '100vh' }}>
-          <Grid item xs={12}>
-            <Component {...pageProps} />
-          </Grid>
-        </Grid>
-      </CssVarsProvider>
-    </SSRProvider>
+      </Grid>
+    </CssVarsProvider>
   )
 }
 

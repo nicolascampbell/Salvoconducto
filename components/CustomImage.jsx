@@ -1,9 +1,8 @@
+import { Skeleton } from '@mui/material'
 import * as React from 'react'
 
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import 'react-lazy-load-image-component/src/effects/blur.css'
 export default function CustomImage({
-  key,
   src,
   width,
   height,
@@ -11,18 +10,33 @@ export default function CustomImage({
   customStyle,
   handleOnClick = () => null
 }) {
+  const [loading, setLoading] = React.useState(true)
   return (
-    <LazyLoadImage
-      key={key}
-      src={src}
-      width={width}
-      height={height}
-      alt={alt}
-      loading="lazy"
-      className="preview-imgs"
-      effect="blur"
-      onClick={handleOnClick}
-      style={customStyle}
-    />
+    <div style={{ width: '100%', height: 'auto' }}>
+      {loading && (
+        <Skeleton
+          variant="rounded"
+          width={'100%'}
+          sx={{
+            aspectRatio: width / height
+          }}
+          className="preview-imgs"
+        />
+      )}
+      <LazyLoadImage
+        src={src}
+        alt={alt}
+        style={{
+          ...customStyle,
+          aspectRatio: width / height,
+          // opacity: loading ? 0 : 1,
+          height: loading ? 0 : 'auto'
+        }}
+        afterLoad={() => setLoading(false)}
+        className="preview-imgs"
+        // threshold={1000}
+        onClick={handleOnClick}
+      />
+    </div>
   )
 }

@@ -7,10 +7,11 @@ const Definition = ({
   type,
   definitions,
   children,
-  classes
+  classes,
+  whiteBg=false
 }) => {
   return (
-    <Stack className={`definition ${classes}`}>
+    <Stack className={`definition ${classes}`} sx={{background:'white'}}> 
       <Typography variant="h3" className="title responsive-title">
         {title}
       </Typography>

@@ -1,13 +1,9 @@
 import * as React from 'react'
-import Box from '@mui/material/Box'
-import ImageList from '@mui/material/ImageList'
-import ImageListItem from '@mui/material/ImageListItem'
-import { useRouter } from 'next/router'
-import useMediaQuery from '@mui/material/useMediaQuery'
-import 'yet-another-react-lightbox/styles.css'
+import { Unstable_Grid2 as Grid } from '@mui/material'
 import Lightbox from 'yet-another-react-lightbox'
 import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 import Download from 'yet-another-react-lightbox/plugins/download'
+import 'yet-another-react-lightbox/styles.css'
 import CustomImage from '@/components/CustomImage'
 
 function purifyApiImages(apiImages, filmKey) {
@@ -23,36 +19,29 @@ function purifyApiImages(apiImages, filmKey) {
 
 export default function ImageListWrapper({ images, filmKey, colsAmount = 2 }) {
   const [open, setOpen] = React.useState(null)
-  const router = useRouter()
-  const matchesSmallDevices = useMediaQuery('(max-width:768px)')
 
   const pureImages = React.useMemo(() => {
     return purifyApiImages(images, filmKey)
   }, [images])
   return (
-    <Box className="d-flex justify-content-center">
-      <ImageList variant="masonry" gap={20} cols={matchesSmallDevices ? 1 : 2}>
+    <React.Fragment>
+      <Grid xs={12} container spacing={2}>
         {pureImages.map((image, index) => {
           return (
-            <ImageListItem
-              key={image.id}
-              sx={{
-                display: 'flex',
-                justifyContent: 'end'
-              }}
-            >
+            <Grid xs={12} md={6}>
               <CustomImage
                 key={image.id}
                 src={image.src}
                 width={image.width}
+                height={image.height}
                 alt={'Picture of last film'}
                 className="preview-imgs"
                 handleOnClick={() => setOpen(index)}
               />
-            </ImageListItem>
+            </Grid>
           )
         })}
-      </ImageList>
+      </Grid>
       <Lightbox
         open={open !== null}
         index={open}
@@ -62,6 +51,6 @@ export default function ImageListWrapper({ images, filmKey, colsAmount = 2 }) {
         animation={{ fade: 100, swipe: 250 }}
         controller={{ closeOnBackdropClick: true }}
       />
-    </Box>
+    </React.Fragment>
   )
 }
