@@ -13,7 +13,19 @@ export default function Home() {
       alignContent={'center'}
       sx={{ height: '100%' }}
     >
-      <Grid xs={10} sm={7} md={6} lg={4} sx={{ height: 'fit-content' }}>
+      <Grid
+        xs={10}
+        sm={7}
+        md={6}
+        lg={5}
+        xl={4}
+        sx={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)'
+        }}
+      >
         <Definition
           title={'Salvoconducto'}
           subtitle={

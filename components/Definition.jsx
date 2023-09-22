@@ -7,26 +7,35 @@ const Definition = ({
   type,
   definitions,
   children,
-  classes,
-  whiteBg=false
+  classes = '',
+  action
 }) => {
   return (
-    <Stack className={`definition ${classes}`} sx={{background:'white'}}> 
-      <Typography variant="h3" className="title responsive-title">
-        {title}
-      </Typography>
-      <Typography variant="subtitle1" className="subtitle">
-        {subtitle}
-      </Typography>
-      <Typography variant="body2" className="type">
-        {type}
-      </Typography>
-      <ol>
-        {definitions.map((definition, index) => (
-          <li key={index}> {definition}</li>
-        ))}
-        {children}
-      </ol>
+    <Stack
+      className={`definition ${classes}`}
+      sx={{ background: 'white' }}
+      alignItems={'end'}
+      justifyContent={'space-between'}
+      direction={'row'}
+    >
+      <Stack p={5}>
+        <Typography variant="h3" className="title responsive-title">
+          {title}
+        </Typography>
+        <Typography variant="subtitle1" className="subtitle">
+          {subtitle}
+        </Typography>
+        <Typography variant="body2" className="type">
+          {type}
+        </Typography>
+        <ol>
+          {definitions.map((definition, index) => (
+            <li key={index}> {definition}</li>
+          ))}
+          {children}
+        </ol>
+      </Stack>
+      {action}
     </Stack>
   )
 }

@@ -1,12 +1,7 @@
 import React from 'react'
 
 import { useRouter } from 'next/router'
-import {
-  SpeedDial,
-  SpeedDialIcon,
-  SpeedDialAction,
-  Box
-} from '@mui/material'
+import { SpeedDial, SpeedDialIcon, SpeedDialAction, Box } from '@mui/material'
 import {
   North as ArrowUpwardIcon,
   KeyboardReturn as KeyboardReturnIcon,
@@ -49,7 +44,11 @@ export const FilmQuickActions = ({
       })
   }
   const actions = [
-    { icon: <ArrowUpwardIcon />, name: 'Top', onClick: handleScrollTop },
+    {
+      icon: <ArrowUpwardIcon />,
+      name: 'Top',
+      onClick: handleScrollTop
+    },
     { icon: <KeyboardReturnIcon />, name: 'Back', onClick: goBackAction },
     {
       icon: <ArrowLeftIcon />,

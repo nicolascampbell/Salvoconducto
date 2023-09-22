@@ -1,7 +1,6 @@
 import { Skeleton } from '@mui/material'
 import * as React from 'react'
 
-import { LazyLoadImage } from 'react-lazy-load-image-component'
 export default function CustomImage({
   src,
   width,
@@ -11,6 +10,20 @@ export default function CustomImage({
   handleOnClick = () => null
 }) {
   const [loading, setLoading] = React.useState(true)
+  const [dimensions, setDimensions] = React.useState({
+    width: 1500,
+    height: 1000
+  })
+  React.useEffect(() => {
+    let img = new Image()
+    setLoading(true)
+
+    img.src = src
+    img.onload = () => {
+      setDimensions({ width: img.width, height: img.height })
+      setLoading(false)
+    }
+  }, [src])
   return (
     <div style={{ width: '100%', height: 'auto' }}>
       {loading && (
@@ -23,20 +36,22 @@ export default function CustomImage({
           className="preview-imgs"
         />
       )}
-      <LazyLoadImage
-        src={src}
-        alt={alt}
-        style={{
-          ...customStyle,
-          aspectRatio: width / height,
-          // opacity: loading ? 0 : 1,
-          height: loading ? 0 : 'auto'
-        }}
-        afterLoad={() => setLoading(false)}
-        className="preview-imgs"
-        // threshold={1000}
-        onClick={handleOnClick}
-      />
+      {!loading && (
+        <img
+          alt={alt}
+          // in a way this is a trick, I fetch the image above and then when this element
+          // fetches it is already in cache so even though its two req acts like one.
+          src={src}
+          style={{
+            ...customStyle,
+            aspectRatio: dimensions.width / dimensions.height
+            // opacity: loading ? 0 : 1,
+          }}
+          className="preview-imgs"
+          // threshold={1000}
+          onClick={handleOnClick}
+        />
+      )}
     </div>
   )
 }

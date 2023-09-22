@@ -40,7 +40,7 @@ export const NavbarMenu = () => {
           className={`menu ${openMenu ? 'isOpen' : 'isClosed'}`}
           onClick={() => handleOpenMenu(!openMenu)}
         >
-          <span className="menu-title me-2 open">Menu</span>
+          <span className="menu-title me-2 open " contentEditable>Menu</span>
           <span className="menu-title me-2 close">Close</span>
           <div className="menu-detail"></div>
         </div>

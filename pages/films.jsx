@@ -15,7 +15,7 @@ import {
   North as ArrowUpwardIcon,
   South as ArrowDownwardIcon
 } from '@mui/icons-material'
-
+import dynamic from 'next/dynamic'
 import Definition from '../components/Definition'
 
 import FilmGridView from '@/components/FilmGridView'
@@ -83,14 +83,16 @@ const Films = ({ films }) => {
     return seenFilms.indexOf(filmKey) !== -1 || false
   }
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} justifyContent={'center'}>
       <Grid
-        xs={12}
+        xs={10}
         container
-        className={'definition no-padd with-back '}
+        className={'definition  with-back '}
         spacing={0}
+        // justifyContent={'center'}  
+        columnSpacing={2}
       >
-        <Grid xs={10} xsOffset={1} sm={6} smOffset={0} lg={5}>
+        <Grid xs={12} xsOffset={1} sm={6} smOffset={0} lg={5}>
           <Definition
             title={'Films'}
             subtitle={<span>[Films]</span>}
@@ -99,9 +101,10 @@ const Films = ({ films }) => {
               'Bundle of memories.',
               'Chronologically ordered films.'
             ]}
+            // classes='no-border'
           />
         </Grid>
-        <Grid xs={10} xsOffset={1} sm={5} smOffset={0}>
+        <Grid xs={12} xsOffset={1} sm={5} smOffset={0}>
           <FilmsPreview films={orderedFilms} />
         </Grid>
       </Grid>
@@ -110,7 +113,7 @@ const Films = ({ films }) => {
         <Grid
           container
           xs={12}
-          lg={8}
+          lg={10}
           justifyContent={'end'}
           alignContent={'start'}
         >
@@ -145,7 +148,7 @@ const Films = ({ films }) => {
             </ToggleButton>
           </StyledToggleButtonGroup>
         </Grid>
-        <Grid xs={12} md={10} lg={8}>
+        <Grid xs={12} md={10}>
           {view === VIEW.LIST ? (
             <FilmListView
               films={orderedFilms}
@@ -165,4 +168,10 @@ const Films = ({ films }) => {
     </Grid>
   )
 }
-export default Films
+// export it with SSR disabled
+const NoSSRFilms = dynamic(() => Promise.resolve(Films), {
+  ssr: false,
+})
+
+
+export default NoSSRFilms

@@ -6,12 +6,13 @@ import VisibilityIcon from '@mui/icons-material/Visibility'
 import dayjs from 'dayjs'
 import { getFilmName } from 'utils'
 
-const CustomListItem = ({
+export const CustomListItem = ({
   name,
   location,
   date,
   handleClick,
-  wasSeen = false
+  wasSeen = false,
+  withBorder = true
 }) => {
   const [mounted, setMounted] = React.useState(false)
 
@@ -21,12 +22,16 @@ const CustomListItem = ({
   return (
     <ListItemButton
       onClick={handleClick}
-      sx={{
-        border: '1px solid hotpink',
-        borderBottom: '2px solid #ff3e9e',
-        borderRight: '3px solid #ff3e9e',
-        marginTop: '1px'
-      }}
+      sx={
+        withBorder
+          ? {
+              border: '1px solid hotpink',
+              borderBottom: '2px solid #ff3e9e',
+              borderRight: '3px solid #ff3e9e',
+              marginTop: '1px'
+            }
+          : {}
+      }
     >
       <Stack
         direction={'column'}

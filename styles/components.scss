@@ -35,3 +35,6 @@
   display: flex;
   justify-content: flex-start;
 }
+.carousel-item{
+  transition:transform 0.2s ease-in-out;
+}

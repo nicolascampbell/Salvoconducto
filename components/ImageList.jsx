@@ -28,9 +28,12 @@ export default function ImageListWrapper({ images, filmKey, colsAmount = 2 }) {
       <Grid xs={12} container spacing={2} justifyContent={'center'}>
         {pureImages.map((image, index, imageArray) => {
           return (
-            <Grid xs={12} md={(image.height>image.width)?3:6}>
+            <Grid
+              xs={12}
+              md={image.height > image.width ? 3 : 6}
+              key={image.id}
+            >
               <CustomImage
-                key={image.id}
                 src={image.src}
                 width={image.width}
                 height={image.height}

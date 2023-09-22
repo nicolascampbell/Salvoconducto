@@ -61,19 +61,21 @@ const Films = ({ film, nextFilmKey, prevFilmKey }) => {
   }, [film.key])
   return (
     <Grid container justifyContent={'center'}>
-
-      <Grid xs={10}  lg={6} >
-        <Button
-          startIcon={<KeyboardReturnIcon />}
-          onClick={() => router.push('/films')}
-        >
-          Back to films
-        </Button>
+      <Grid xs={10} lg={6}>
         <Definition
           title={getFilmName(film.key)}
           subtitle={<span>[{getFilmName(film.key)}]</span>}
           type={'Film'}
           definitions={definitions}
+          action={
+            <Button
+              startIcon={<KeyboardReturnIcon />}
+              onClick={() => router.push('/films')}
+              color='secondary'
+            >
+              Back to films
+            </Button>
+          }
         />
       </Grid>
       <Grid xs={12} className="mt-5">
