@@ -8,7 +8,7 @@
     "build": "next build && next export",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "next build && next export && touch ./out/.nojekyll && gh-pages -d out -t true"
+    "deploy": "next build && next export && git add . && git commit -m 'deploy' && git push"
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",

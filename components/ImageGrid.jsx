@@ -4,6 +4,7 @@ import produce from 'immer'
 import { Responsive, WidthProvider } from 'react-grid-layout'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import 'react-lazy-load-image-component/src/effects/blur.css'
+import CustomImage from './CustomImage'
 import { SpeedDial, Stack, SpeedDialIcon, SpeedDialAction, Box, Typography } from '@mui/material'
 import {
   Save as SaveIcon,
@@ -46,7 +47,7 @@ const MeasuredImage = ({ item, onSizeChange, handleClick }) => {
     <Measure bounds onResize={handleResize}>
       {({ measureRef }) => (
         <div ref={measureRef}>
-          <img
+          <CustomImage
             src={getLink(item.src)}
             alt={'of last film'}
             loading="lazy"
@@ -110,7 +111,7 @@ const ImageGrid = ({ pureImages, description, handleClickImage, savedLayouts = u
   const matchesSmallDevices = useMediaQuery('(max-width:700px)')
   const [previewMode, setPreviewMode] = React.useState(false)
   const ResponsiveGridLayout = React.useMemo(() => WidthProvider(Responsive), []);
-  const isEditMode = React.useMemo(() => !previewMode && process.env.NEXT_PUBLIC_EDIT_LAYOUT === true, [previewMode]);
+  const isEditMode = React.useMemo(() => !previewMode && process.env.NEXT_PUBLIC_EDIT_LAYOUT === "true", [previewMode, process.env.NEXT_PUBLIC_EDIT_LAYOUT]);
   const [breakpoint, setBreakpoint] = React.useState('sm')
   function handleItemSizeChange(size, index) {
     setLayouts(

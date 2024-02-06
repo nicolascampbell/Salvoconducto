@@ -5,6 +5,7 @@ export default function CustomImage({
   src,
   width=1500,
   height=1000,
+  minHeight=300,
   alt,
   customStyle,
   handleOnClick = () => null
@@ -32,7 +33,8 @@ export default function CustomImage({
           variant="rounded"
           width={'100%'}
           sx={{
-            aspectRatio: width / height
+            aspectRatio: width / height,
+            minHeight:minHeight
           }}
           className="preview-imgs"
         />

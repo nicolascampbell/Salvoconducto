@@ -34,7 +34,7 @@ export const CustomListItem = ({
       }
     >
 
-      <Stack direction={'column'} alignItems={'center'} spacing={1} >
+      <Stack direction={'column'} alignItems={'center'} spacing={1} width={'100%'}>
         <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} width={'100%'}>
           <Typography variant="h6" fontFamily={'Jost'} letterSpacing={'0.3rem'}>
             {title}
@@ -51,6 +51,7 @@ export const CustomListItem = ({
           width={'1500px'}
           height={'1000px'}
           maxHeight={300}
+          minHeight={300}
         />
       </Stack>
     </ListItemButton >
