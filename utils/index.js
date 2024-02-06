@@ -26,6 +26,29 @@ export async function getAllFilms() {
     })
     .filter((film) => film.visible)
 }
+export async function getAllCollections() {
+  const resulting = await fetch(`${API_URL}/api/collections?populate=*`)
+  const { data } = await resulting.json()
+
+  return data.map((film) => {
+    console.log(film)
+    const { date, isVisible, cover, title, description, images } =
+      film.attributes
+    return { id: film.id, date, isVisible, cover, title, description, images }
+  })
+  // .filter((film) => film.visible)
+}
+export async function getCollectionsList() {
+  const resulting = await fetch(`${API_URL}/api/collections?populate[1]=cover`)
+  const { data } = await resulting.json()
+
+  return data
+    .map((collection) => {
+      const { date, title, description, cover } = collection.attributes
+      console.log(cover)
+      return { id: collection.id, date, title, description, cover: `/collections/${collection.id}/${cover.data.attributes.name}` }
+    })
+}
 export function sortFilms(films, orderDesc) {
   return [...films]
     .sort((a, b) => (orderDesc ? a.key - b.key : b.key - a.key))
@@ -37,4 +60,8 @@ export function sortFilms(films, orderDesc) {
 }
 export function mod(n, m) {
   return ((n % m) + m) % m
+}
+function kwdw(iwo) {
+  return "heo"
+
 }

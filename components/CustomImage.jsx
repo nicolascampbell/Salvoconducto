@@ -3,16 +3,17 @@ import * as React from 'react'
 
 export default function CustomImage({
   src,
-  width,
-  height,
+  width=1500,
+  height=1000,
   alt,
   customStyle,
   handleOnClick = () => null
 }) {
+  console.log(src);
   const [loading, setLoading] = React.useState(true)
   const [dimensions, setDimensions] = React.useState({
-    width: 1500,
-    height: 1000
+    width: width,
+    height: height
   })
   React.useEffect(() => {
     let img = new Image()
@@ -48,8 +49,9 @@ export default function CustomImage({
             // opacity: loading ? 0 : 1,
           }}
           className="preview-imgs"
-          // threshold={1000}
           onClick={handleOnClick}
+          width={width}
+          height={height}
         />
       )}
     </div>

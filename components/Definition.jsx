@@ -1,5 +1,5 @@
 import { Stack, Typography } from '@mui/material'
-import React, { Children } from 'react'
+import React from 'react'
 
 const Definition = ({
   title,
@@ -13,13 +13,12 @@ const Definition = ({
   return (
     <Stack
       className={`definition ${classes}`}
-      sx={{ background: 'white' }}
       alignItems={'end'}
       justifyContent={'space-between'}
       direction={'row'}
     >
-      <Stack p={5}>
-        <Typography variant="h3" className="title responsive-title">
+      <Stack p={3}>
+        <Typography variant="h3" >
           {title}
         </Typography>
         <Typography variant="subtitle1" className="subtitle">

@@ -7,17 +7,18 @@ import NavbarMenu from 'components/NavbarMenu'
 import Head from 'next/head'
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
-  experimental_extendTheme as extendTheme
+  experimental_extendTheme as extendTheme,
+  responsiveFontSizes
 } from '@mui/material/styles'
 import { pink } from '@mui/material/colors'
 
 
-const theme = extendTheme({
+let theme = extendTheme({
   colorSchemes: {
     light: {
       palette: {
         primary: {
-          main: '#916bb6'
+          main: 'hsl(270, 56%, 55%)'
         },
         secondary:{
           main:'#fb5e37'
@@ -37,7 +38,7 @@ const theme = extendTheme({
     }
   }
 })
-
+theme = responsiveFontSizes(theme)
 function MyApp({
   Component,
   pageProps,

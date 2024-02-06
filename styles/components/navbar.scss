@@ -1,28 +1,29 @@
 $nav-link-bg-h: 100%;
-$nav-link-gradient: linear-gradient(
-    120deg,
+$nav-link-gradient: linear-gradient(120deg,
     $primary-accent-color,
-    $secondary-accent-color
-  )
-  no-repeat right bottom / 0 $nav-link-bg-h;
+    $secondary-accent-color ) no-repeat right bottom / 0 $nav-link-bg-h;
+
 a:hover {
   color: $primary-accent-color;
 }
+
 .background {
   position: absolute;
   width: 100vw;
   height: 100vh;
   top: 0;
   left: 0;
-  background-color: $primary-accent-color;
+  background-color: white;
   border: 4px solid $secondary-accent-color;
   z-index: 2;
 }
+
 .navbar-container {
   position: fixed;
   width: 100%;
   z-index: 10;
 }
+
 .custom-navbar {
   background-color: transparent !important;
   display: flex;
@@ -37,6 +38,7 @@ a:hover {
     cursor: pointer;
     font-size: 1.1rem;
     padding: 1rem;
+
     .close {
       display: none;
     }
@@ -50,12 +52,14 @@ a:hover {
       display: inline-block;
     }
   }
+
   .menu-socials {
     position: fixed;
     right: 0;
     bottom: 0;
     -webkit-transition: 0.25s 0s ease-in-out;
     transition: 0.25s 0s ease-in-out;
+
     a:hover {
       color: $secondary-accent-color;
     }
@@ -66,6 +70,7 @@ a:hover {
     bottom: 15%;
     left: 15%;
     width: 200px;
+
     img {
       position: relative;
       width: 200px;
@@ -74,23 +79,27 @@ a:hover {
       display: block;
     }
   }
+
   .isOpen {
     .close {
       display: inline;
       -webkit-transition: 0.4s ease-in-out;
       transition: 0.4s ease-in-out;
     }
+
     .open {
       display: none;
       -webkit-transition: 0.4s ease-in-out;
       transition: 0.4s ease-in-out;
     }
+
     .menu-title {
       position: relative;
       z-index: 1;
       -webkit-transition: 0.4s ease-in-out;
       transition: 0.4s ease-in-out;
     }
+
     .menu-detail {
       // box-shadow: 0 0 0 100vw $primary-accent-color,
       //   0 0 0 100vh $primary-accent-color;
@@ -102,35 +111,43 @@ a:hover {
     }
   }
 }
+
 .menu-items {
   position: absolute;
   right: 0;
   padding: 0.9rem;
   top: 100%;
   padding-left: 0.45rem;
+
   .nav-link {
     text-align: right;
     color: $primary-font-color;
     font-weight: 400;
     font-size: 1.5rem;
+
     @media (max-width: 511px) {
       font-size: 4vw;
     }
+
     z-index: 2;
     padding: 0.6rem;
-    background-color: $secondary-accent-color;
+    background-color: $support-accent-color;
     transition: background-color ease-in-out 0.2s;
     --bg-h: 0.3rem;
+
     &:where(:hover, :focus-visible) {
       background-color: $support-secondary-accent-color;
     }
+
     &.disabled {
-      background-color: $support-accent-color;
+      background-color: $secondary-accent-color;
     }
+
     .navbar-route-whisperer {
       position: absolute;
-      font-size: 0.5rem;
+      font-size: 0.7rem;
       line-height: 0;
+
       @media (max-width: 511px) {
         font-size: 1.6vw;
       }

@@ -28,30 +28,36 @@
 
 @import 'react-grid-layout/css/styles.css';
 @import 'react-resizable/css/styles.css';
+
 .responsive-title {
   @media (max-width: 576px) {
     font-size: 7.5vw !important;
   }
 }
+
 .no-style-link {
   cursor: pointer;
   text-decoration: none;
   color: inherit;
+
   &.duck-link:hover {
     color: $duck-color;
   }
 }
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: $font-family !important;
-  & > {
+
+  &> {
     overflow-y: scroll;
     overflow-x: hidden;
     scroll-behavior: smooth;
   }
 }
+
 .scroll-lock {
   overflow-y: hidden;
 }
@@ -81,11 +87,13 @@ body {
     background: tint-color($primary-accent-color, 97%);
   }
 }
+
 footer {
   text-align: center;
   padding: 0.5rem;
   font-weight: 100;
 }
+
 .img-subtitle {
   display: block;
   float: right;
@@ -94,11 +102,26 @@ footer {
   font-weight: 200;
   font-family: $font-family-monospace;
 }
+
 .preview-imgs {
   cursor: pointer;
   width: 100%;
   height: auto;
+  object-fit: cover;
 }
+
 .cursor-pointer {
   cursor: pointer;
+}
+
+.react-grid-item {
+  overflow: hidden;
+
+  img {
+    pointer-events: all;
+  }
+
+  .react-resizable-handle {
+    background-color: white;
+  }
 }

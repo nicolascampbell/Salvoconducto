@@ -1,30 +1,30 @@
 import React from 'react'
-import { Unstable_Grid2 as Grid } from '@mui/material' // Grid version 2
-import ImageList from './ImageList'
 import Measure from 'react-measure'
 import produce from 'immer'
 import { Responsive, WidthProvider } from 'react-grid-layout'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import 'react-lazy-load-image-component/src/effects/blur.css'
-const ResponsiveGridLayout = WidthProvider(Responsive)
-const EDIT = false
-import { API_URL } from 'utils/config'
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max)
-}
+import { SpeedDial, Stack, SpeedDialIcon, SpeedDialAction, Box, Typography } from '@mui/material'
+import {
+  Save as SaveIcon,
+  Visibility as VisibilityIcon
+} from '@mui/icons-material';
+// THIS DOES NOT WORK
+// even though I assign this at the start if there is no saved layout seems like there is smth wrong
+// and this config gets ignored
 function generateLayout(breakpoints, size, customLayout) {
   let layoutsArray = Object.keys(breakpoints).map((breakpoint) => {
     return {
       key: breakpoint,
       value: Array.from({ length: size }).map((item, i) => {
-        const w = Math.ceil(Math.random() * 4)
+        const w = Math.ceil(Math.random() * 4) + 1
         const y = Math.ceil(Math.random() * 4) + 1
         return {
           x: (i * 2) % 12,
           y: Math.floor(i / 6) * y,
-          w: 12,
-          h: y,
-          i: i.toString()
+          w: 16,
+          h: 2,
+          i: i.toString(),
         }
       })
     }
@@ -34,7 +34,7 @@ function generateLayout(breakpoints, size, customLayout) {
     {}
   )
 }
-const MeasuredImage = ({ item, onSizeChange, minHeight }) => {
+const MeasuredImage = ({ item, onSizeChange, handleClick }) => {
   const getLink = (path) => `${path}`
   function handleResize(contentRect) {
     onSizeChange({
@@ -42,21 +42,16 @@ const MeasuredImage = ({ item, onSizeChange, minHeight }) => {
       height: contentRect.bounds.height
     })
   }
-  console.log(item)
   return (
     <Measure bounds onResize={handleResize}>
       {({ measureRef }) => (
-        <div ref={measureRef} style={{ minHeight: minHeight }}>
-          <LazyLoadImage
+        <div ref={measureRef}>
+          <img
             src={getLink(item.src)}
-            srcSet={getLink(item.src)}
-            alt={'Picture of last film'}
+            alt={'of last film'}
             loading="lazy"
-            effect="blur"
             className="preview-imgs"
-            onClick={() =>
-              window.open(getLink(item.src), '_blank', 'noopener,noreferrer')
-            }
+            onClick={handleClick}
           />
         </div>
       )}
@@ -73,7 +68,7 @@ const CustomGridItemComponent = React.forwardRef(
       onTouchEnd,
       customChild,
       children,
-
+      isEditMode,
       ...props
     },
     ref
@@ -90,26 +85,32 @@ const CustomGridItemComponent = React.forwardRef(
         {/* Some other content */}
         {customChild}
         {/* Make sure to include children to add resizable handle */}
-        {EDIT && children}
+        {isEditMode && children}
       </div>
     )
   }
 )
-const BREAKPOINTS = { sm: 700, xs: 480, xxs: 0 }
-function purifyApiImages(apiImages) {
-  console.log('HIE')
-  return apiImages.map((image) => ({
-    src: `${API_URL}${image.attributes.url}`,
-    height: image.attributes.height,
-    width: image.attributes.width,
-    id: image.id
-  }))
+const BREAKPOINTS = { sm: 700 }
+
+function sortImageNames(a, b) {
+  return a.split('.')[0] - b.split('.')[0];
 }
-const ImageGrid = ({ images }) => {
-  const [layouts, setLayouts] = React.useState(
-    generateLayout(BREAKPOINTS, images.length)
-  )
-  console.log(layouts)
+function purifyApiImages(apiImages, collectionId) {
+  return apiImages
+    .sort((a, b) => sortImageNames(a.attributes.name, b.attributes.name))
+    .map((image) => ({
+      src: `/collections/${collectionId}/${image.attributes.name}`,
+      height: image.attributes.height,
+      width: image.attributes.width,
+      id: image.id
+    }))
+}
+const ImageGrid = ({ pureImages, description, handleClickImage, savedLayouts = undefined, saveLayout }) => {
+  const [layouts, setLayouts] = React.useState(savedLayouts !== undefined ? savedLayouts : generateLayout(BREAKPOINTS, pureImages.length))
+  const matchesSmallDevices = useMediaQuery('(max-width:700px)')
+  const [previewMode, setPreviewMode] = React.useState(false)
+  const ResponsiveGridLayout = React.useMemo(() => WidthProvider(Responsive), []);
+  const isEditMode = React.useMemo(() => !previewMode && process.env.NEXT_PUBLIC_EDIT_LAYOUT === true, [previewMode]);
   const [breakpoint, setBreakpoint] = React.useState('sm')
   function handleItemSizeChange(size, index) {
     setLayouts(
@@ -125,44 +126,97 @@ const ImageGrid = ({ images }) => {
       })
     )
   }
-  function handleLayoutChange(layout) {
-    console.log({ LAYOUT: layout, BREAKPOINT: breakpoint })
+  function handleLayoutChange(layout, layouts) {
     setLayouts({ ...layouts, [breakpoint]: layout })
   }
-  const pureImages = React.useMemo(() => {
-    return purifyApiImages(images)
-  }, [images])
+  function handleSaveLayout() {
+    saveLayout(layouts)
+  }
+  function handleTogglePreviewMode() {
+    setPreviewMode(!previewMode)
+  }
   return (
-    <ResponsiveGridLayout
-      className="layout"
-      layouts={layouts}
-      breakpoints={BREAKPOINTS}
-      cols={{ sm: 12, xs: 4, xxs: 2 }}
-      rowHeight={10}
-      margin={[25, 25]}
-      onLayoutChange={EDIT ? handleLayoutChange : () => null}
-      onBreakpointChange={(breakpoint) => setBreakpoint(breakpoint)}
-    >
-      {/* lastFilm is an array of objects with src and other stuff about the images*/}
-      {pureImages.map((image, index) => (
-        <CustomGridItemComponent
-          key={image.id}
-          className={'box'}
-          customChild={
-            <img
+    <React.Fragment>
+      {matchesSmallDevices ?
+
+        <Stack direction='column' spacing={2} marginY={2}>
+          {pureImages.map((image, index) => (
+            <MeasuredImage
               key={image.id}
-              src={image.src}
-              height={image.height}
-              width={image.width}
-              alt={'Picture of last film'}
-              loading="lazy"
-              className="preview-imgs"
-              onClick={() => setOpen(index)}
+              item={image}
+              handleClick={() => console.log('hey')}
+            />
+          ))}
+          <Typography variant='body1' fontFamily={'monospace'}>{description}</Typography>
+        </Stack> :
+        <ResponsiveGridLayout
+          className="layout"
+          cols={{ sm: 24 }}
+          layouts={layouts}
+          breakpoints={BREAKPOINTS}
+          rowHeight={10}
+          items={pureImages.length}
+          isDraggable={isEditMode}
+          isResizable={isEditMode}
+          compactType={null}
+          margin={[25, 25]}
+          useCSSTransforms={true}
+          onLayoutChange={isEditMode ? handleLayoutChange : () => null}
+          onBreakpointChange={(breakpoint) => setBreakpoint(breakpoint)}
+          resizeHandles={['sw', 'nw', 'se', 'ne']}
+          preventCollision
+        >
+          {/* lastFilm is an array of objects with src and other stuff about the images*/}
+          {pureImages.map((image, index) => (
+            <CustomGridItemComponent
+              key={image.id}
+              className={'box'}
+              onItemClick={() => handleClickImage(index)}
+              isEditMode={isEditMode}
+              customChild={
+                <MeasuredImage
+                  item={image}
+                  handleClick={() => handleClickImage(index)}
+                  onSizeChange={(size) => handleItemSizeChange(size, index)}
+                />
+              }
+            />
+          ))}
+          {description &&
+            <CustomGridItemComponent
+              key={'description'}
+              className={'box'}
+              isEditMode={!previewMode && process.env.NEXT_PUBLIC_EDIT_LAYOUT}
+              customChild={
+                <Typography variant='body1' fontFamily={'monospace'}>{description}</Typography>
+              }
             />
           }
-        />
-      ))}
-    </ResponsiveGridLayout>
+        </ResponsiveGridLayout>
+      }
+      {process.env.NEXT_PUBLIC_EDIT_LAYOUT &&
+        <Box sx={{ height: 320, position: "fixed", bottom: 0, right: 0 }} >
+          <SpeedDial
+            ariaLabel="SpeedDial basic example"
+            sx={{ position: 'absolute', bottom: 16, right: 16 }}
+            icon={<SpeedDialIcon />}
+          >
+            <SpeedDialAction
+              key={'preview'}
+              icon={<VisibilityIcon />}
+              tooltipTitle={`Preview Mode: ${previewMode ? "On" : "Off"}`}
+              onClick={handleTogglePreviewMode}
+            />
+            <SpeedDialAction
+              key={'save'}
+              icon={<SaveIcon />}
+              tooltipTitle={"Save Layout"}
+              onClick={handleSaveLayout}
+            />
+          </SpeedDial>
+        </Box>
+      }
+    </React.Fragment >
   )
 }
 
