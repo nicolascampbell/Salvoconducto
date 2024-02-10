@@ -117,15 +117,19 @@ a:hover {
   padding: 0.9rem;
   top: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr [fefef] 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 10px 10px;
   grid-template-areas:
-    "home home home about about about"
-    "home home home collections collections collections"
-    "miscellaneous miscellaneous miscellaneous collections collections collections"
-    "miscellaneous miscellaneous miscellaneous collections collections collections"
-    "miscellaneous miscellaneous miscellaneous collections collections collections";
+    "home home home about about about about"
+    "home home home about about about about"
+    "miscellaneous miscellaneous miscellaneous about about about about"
+    "miscellaneous miscellaneous miscellaneous collections collections collections collections"
+    "miscellaneous miscellaneous miscellaneous collections collections collections collections"
+    "miscellaneous miscellaneous miscellaneous collections collections collections collections"
+    "miscellaneous miscellaneous miscellaneous collections collections collections collections"
+    "miscellaneous miscellaneous miscellaneous collections collections collections collections";
+  min-height: 50vh;
 
   .home {
     grid-area: home;
@@ -146,16 +150,12 @@ a:hover {
   .nav-link {
     text-align: right;
     color: $primary-font-color;
-    font-weight: 400;
-    font-size: 1.5rem;
 
-    @media (max-width: 511px) {
-      font-size: 4vw;
-    }
 
     z-index: 2;
     padding: 0.6rem;
-    background-color: $primary-accent-color;
+    border: 4px solid;
+    border-color: hotpink;
     transition: background-color ease-in-out 0.2s;
     --bg-h: 0.3rem;
 
@@ -164,6 +164,7 @@ a:hover {
     }
 
     &.current-route {
+      border: transparent;
       background-color: $secondary-accent-color;
     }
   }
@@ -174,7 +175,7 @@ a:hover {
   width: 40px;
   height: 100%;
   background-color: $primary-accent-color;
-  color: $secondary-accent-color;
+  color: hotpink;
   display: flex;
   justify-content: center;
   align-items: center;
