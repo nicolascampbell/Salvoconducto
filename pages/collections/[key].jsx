@@ -82,6 +82,9 @@ const Collection = ({ collection }) => {
   const pureImages = React.useMemo(() => {
     return purifyApiImages(collection.attributes.images.data, collection.id)
   }, [collection])
+  function handleClickImage(index) {
+    if (process.env.NEXT_PUBLIC_EDIT_LAYOUT !== "true") setOpen(index)
+  }
   return (
     <Grid container>
       <Grid xs={1} alignSelf={'end'}>
@@ -90,14 +93,14 @@ const Collection = ({ collection }) => {
         </IconButton>
       </Grid>
       <Grid xs={10}>
-        <Typography variant='subtitle2' textAlign={'center'} fontFamily={'Jost'} fontWeight={600} >Collection</Typography>
-        <Typography variant='h2' textAlign={'center'} fontFamily={'Jost'} fontWeight={500} letterSpacing={'1rem'}>{collection.attributes.title}</Typography>
+        <Typography variant='subtitle2' textAlign={'center'} fontWeight={600} >Collection</Typography>
+        <Typography variant='h2' textAlign={'center'} fontWeight={500} letterSpacing={'1rem'}>{collection.attributes.title}</Typography>
       </Grid>
       <Grid xs={12} padding={0}>
-        <ImageGrid handleClickImage={(index) => setOpen(index)} collectionId={collection.id} description={collection.attributes.description} pureImages={pureImages} savedLayouts={collection.attributes.collectionLayouts} saveLayout={updateCollectionLayout} />
+        <ImageGrid handleClickImage={handleClickImage} collectionId={collection.id} description={collection.attributes.description} pureImages={pureImages} savedLayouts={collection.attributes.collectionLayouts} saveLayout={updateCollectionLayout} />
       </Grid>
       <Grid xs={12} display={'flex'} justifyContent={'center'}>
-        <Button variant='contained' color='primary' endIcon={<ArrowUpwardIcon />} onClick={handleScrollTop}> Scroll Up</Button>
+        <Button variant='text' sx={{ textTransform: 'none', letterSpacing: '0.2rem' }} endIcon={<ArrowUpwardIcon />} onClick={handleScrollTop}> Scroll Up</Button>
       </Grid>
       <Lightbox
         open={open !== null}

@@ -14,25 +14,21 @@ import { pink } from '@mui/material/colors'
 
 
 let theme = extendTheme({
+  typography: {
+    fontFamily: "'Jost', sans-serif"
+  },
   colorSchemes: {
     light: {
       palette: {
         primary: {
-          main: 'hsl(270, 56%, 55%)'
+          main: '#8748C5'
         },
-        secondary:{
-          main:'#fb5e37'
-          
+        secondary: {
+          main: '#AB73E2'
+
         },
         supportAccent: {
           main: '#ff69b4'
-        }
-      }
-    },
-    dark: {
-      palette: {
-        primary: {
-          main: pink[400]
         }
       }
     }
@@ -45,25 +41,24 @@ function MyApp({
 }) {
   usePreserveScroll()
   return (
-      <CssVarsProvider theme={theme}>
-        <Head>
-          <title>Salvoconducto</title>
-          <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg" />
-          <link
-            rel="icon"
-            type="image/png"
-            href="../favicon/favicon.png"
-          ></link>
-        </Head>
-        <Grid xs={12} >
-          <NavbarMenu />
+    <CssVarsProvider theme={theme}>
+      <Head>
+        <title>Salvoconducto</title>
+        <link rel="icon" type="image/svg+xml" href="../favicon/favicon.svg" />
+        <link
+          rel="icon"
+          type="image/png"
+          href="../favicon/favicon.png"
+        ></link>
+      </Head>
+
+      <NavbarMenu />
+      <Grid padding={2} container sx={{ zIndex: 100, position: 'relative' }}>
+        <Grid xs={12}>
+          <Component {...pageProps} />
         </Grid>
-        <Grid padding={2} container style={{ height: '100%' }}>
-          <Grid xs={12}>
-            <Component {...pageProps} />
-          </Grid>
-        </Grid>
-      </CssVarsProvider>
+      </Grid>
+    </CssVarsProvider>
   )
 }
 

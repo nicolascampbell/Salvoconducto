@@ -15,7 +15,7 @@ a:hover {
   left: 0;
   background-color: white;
   border: 4px solid $secondary-accent-color;
-  z-index: 2;
+  z-index: 199;
 }
 
 .navbar-container {
@@ -29,12 +29,13 @@ a:hover {
   display: flex;
   justify-content: space-between;
   padding: 0.2rem;
+
   z-index: 200;
 
   .menu {
     font-weight: 500;
     position: relative;
-
+    z-index: 200;
     cursor: pointer;
     font-size: 1.1rem;
     padding: 1rem;
@@ -101,8 +102,6 @@ a:hover {
     }
 
     .menu-detail {
-      // box-shadow: 0 0 0 100vw $primary-accent-color,
-      //   0 0 0 100vh $primary-accent-color;
       background: $secondary-accent-color;
       width: 0.5rem;
       height: 0.5rem;
@@ -117,7 +116,32 @@ a:hover {
   right: 0;
   padding: 0.9rem;
   top: 100%;
-  padding-left: 0.45rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  gap: 10px 10px;
+  grid-template-areas:
+    "home home home about about about"
+    "home home home collections collections collections"
+    "miscellaneous miscellaneous miscellaneous collections collections collections"
+    "miscellaneous miscellaneous miscellaneous collections collections collections"
+    "miscellaneous miscellaneous miscellaneous collections collections collections";
+
+  .home {
+    grid-area: home;
+  }
+
+  .collections {
+    grid-area: collections;
+  }
+
+  .about {
+    grid-area: about;
+  }
+
+  .miscellaneous {
+    grid-area: miscellaneous;
+  }
 
   .nav-link {
     text-align: right;
@@ -131,26 +155,16 @@ a:hover {
 
     z-index: 2;
     padding: 0.6rem;
-    background-color: $support-accent-color;
+    background-color: $primary-accent-color;
     transition: background-color ease-in-out 0.2s;
     --bg-h: 0.3rem;
 
     &:where(:hover, :focus-visible) {
-      background-color: $support-secondary-accent-color;
+      background-color: $support-primary;
     }
 
-    &.disabled {
+    &.current-route {
       background-color: $secondary-accent-color;
-    }
-
-    .navbar-route-whisperer {
-      position: absolute;
-      font-size: 0.7rem;
-      line-height: 0;
-
-      @media (max-width: 511px) {
-        font-size: 1.6vw;
-      }
     }
   }
 }
@@ -165,7 +179,7 @@ a:hover {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  z-index: 1;
+  z-index: 200;
   position: relative;
 }
 

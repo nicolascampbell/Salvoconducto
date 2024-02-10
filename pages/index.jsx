@@ -7,33 +7,37 @@ export default function Home() {
   const getLink = (path) => `${router.basePath}${path}`
 
   return (
-    <Definition
-      title={'Salvoconducto'}
-      classes='no-border home-definition'
-      subtitle={
-        <span>
-          [Sal·βo·kon·
-          <a
-            className="no-style-link duck-link"
-            onClick={() =>
-              window.open(
-                'https://9gag.com/tag/duck',
-                '_blank',
-                'noopener,noreferrer'
-              )
-            }
-          >
-            <strong>duk</strong>
-          </a>
-          ·to]
-        </span>
-      }
-      type={'Website'}
-      definitions={[
-        'A place to share what my eyes see.',
-        'Within can be found all my films and collections.',
-        `The name means: Freedom to do something without fear of punishment.`
-      ]}
-    />
+    <Grid container xs={12} justifyContent={'center'}>
+      <Grid xs={11} sm={6} md={5} lg={4}>
+        <Definition
+          title={'Salvoconducto'}
+          classes='no-border'
+          subtitle={
+            <span>
+              [Sal·βo·kon·
+              <a
+                className="no-style-link duck-link"
+                onClick={() =>
+                  window.open(
+                    'https://9gag.com/tag/duck',
+                    '_blank',
+                    'noopener,noreferrer'
+                  )
+                }
+              >
+                <strong>duk</strong>
+              </a>
+              ·to]
+            </span>
+          }
+          type={'Website'}
+          definitions={[
+            'A place to share what my eyes see.',
+            'Within can be found all my films and collections.',
+            `The name means: Freedom to do something without fear of punishment.`
+          ]}
+        />
+      </Grid>
+    </Grid>
   )
 }

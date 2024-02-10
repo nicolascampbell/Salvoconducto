@@ -1,7 +1,7 @@
 import React from 'react'
 import { Nav, Navbar } from 'react-bootstrap'
 import { useRouter } from 'next/router'
-import { Box, Fade } from '@mui/material'
+import { Box, Fade, Typography } from '@mui/material'
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import Slide from '@mui/material/Slide'
@@ -10,6 +10,22 @@ import Masonry from '@mui/lab/Masonry'
 import { useKeyPress } from 'hooks/useKeyPress'
 
 import NavbarBrand from './NavbarBrand'
+
+const MenuItem = ({ openMenu, customClassName, transitionDelay, navigateAndClose, isCurrentRoute, routeName }) => (
+  <Zoom in={openMenu} style={{ transitionDelay: transitionDelay }}>
+    <Nav.Link
+      onClick={navigateAndClose}
+      className={`${customClassName} ${isCurrentRoute ? 'current-route' : ''}`}
+    >
+      {isCurrentRoute && (
+        <Typography variant='caption' fontSize={'x-small'} fontWeight={'300'}>You are here</Typography>
+      )}
+      <Typography variant='h5' noWrap>
+        {routeName}
+      </Typography>
+    </Nav.Link>
+  </Zoom>
+)
 export const NavbarMenu = () => {
   const [openMenu, setOpenMenu] = React.useState(false)
   const escPress = useKeyPress('Escape')
@@ -32,7 +48,8 @@ export const NavbarMenu = () => {
       <Fade in={openMenu}>
         <div className="background"></div>
       </Fade>
-      <Navbar bg="light" className="custom-navbar">
+      <Navbar bg="light"
+        className={`custom-navbar ${openMenu ? 'open' : 'close'}`}>
         <Navbar.Brand onClick={() => navigateAndClose('/')} className="mx-2">
           <NavbarBrand />
         </Navbar.Brand>
@@ -47,80 +64,45 @@ export const NavbarMenu = () => {
         <Slide direction="up" in={openMenu}>
           <div className="menu-socials mb-3 me-3 ">
             <div >
-              <span>conducto.photography_at_proton.me</span>
+              <span>conducto.photography#proton.me</span>
             </div>
           </div>
         </Slide>
-        <Zoom in={openMenu} style={{ transitionDelay: '50ms' }}>
-          <Box
-            sx={{ width: matchesSmallDevices ? '100%' : '60%', maxWidth: 600 }}
-            className="menu-items"
-          >
-            <Masonry columns={2} className="m-0">
-              <Zoom in={openMenu} style={{ transitionDelay: '50ms' }}>
-                <Nav.Link
-                  onClick={() => navigateAndClose('/')}
-                  style={{ height: '40%' }}
-                  disabled={router.pathname.slice(1) === ''}
-                >
-                  {router.pathname.slice(1) === '' && (
-                    <span className="navbar-route-whisperer">You are here</span>
-                  )}
-                  Home
-                </Nav.Link>
-              </Zoom>
-              <Zoom in={openMenu}>
-                <Nav.Link
-                  onClick={() => navigateAndClose('/about')}
-                  disabled={router.pathname.slice(1) === 'about'}
-                >
-                  {router.pathname.slice(1) === 'about' && (
-                    <span className="navbar-route-whisperer">You are here</span>
-                  )}
-                  About
-                </Nav.Link>
-              </Zoom>
-              {
-                // <Zoom in={openMenu} style={{ transitionDelay: '100ms' }}>
-                //   <Nav.Link
-                //     onClick={() => navigateAndClose('/films')}
-                //     disabled={router.pathname.slice(1) === 'films'}
-                //     style={{ height: '60%' }}
-                //   >
-                //     {router.pathname.slice(1) === 'films' && (
-                //       <span className="navbar-route-whisperer">You are here</span>
-                //     )}
-                //     Films
-                //   </Nav.Link>
-                // </Zoom>
-              }
-              <Zoom in={openMenu}>
-                <Nav.Link
-                  onClick={() => navigateAndClose('/collections')}
-                  disabled={router.pathname.split('/')[1] === 'collections'}
-                  style={{ height: '75%' }}
-                >
-                  {router.pathname.split('/')[1] === 'collections' && (
-                    <span className="navbar-route-whisperer">You are here</span>
-                  )}
-                  Collections
-                </Nav.Link>
-              </Zoom>
-              <Zoom in={openMenu} style={{ transitionDelay: '20ms' }}>
-                <Nav.Link
-                  onClick={() => navigateAndClose('/misc')}
-                  disabled={router.pathname.slice(1) === 'misc'}
-                  style={{ height: '52%' }}
-                >
-                  {router.pathname.slice(1) === 'misc' && (
-                    <span className="navbar-route-whisperer">You are here</span>
-                  )}
-                  Miscellaneous
-                </Nav.Link>
-              </Zoom>
-            </Masonry>
-          </Box>
-        </Zoom>
+      <Fade in={openMenu} unmountOnExit>
+        <Box
+          sx={{ width: matchesSmallDevices ? '100%' : '60%', maxWidth: 600 }}
+          className={'menu-items'}
+        >
+          <MenuItem
+            openMenu={openMenu}
+            customClassName='home'
+            transitionDelay={'25ms'}
+            navigateAndClose={() => navigateAndClose('/')}
+            isCurrentRoute={router.pathname.slice(1) === ''}
+            routeName={'Home'} />
+          <MenuItem
+            openMenu={openMenu}
+            customClassName='about'
+            transitionDelay={'0ms'}
+            navigateAndClose={() => navigateAndClose('/about')}
+            isCurrentRoute={router.pathname.slice(1) === 'about'}
+            routeName={'About'} />
+          <MenuItem
+            openMenu={openMenu}
+            customClassName='collections'
+            transitionDelay={'50ms'}
+            navigateAndClose={() => navigateAndClose('/collections')}
+            isCurrentRoute={router.pathname.includes('collections')}
+            routeName={'Collections'} />
+          <MenuItem
+            openMenu={openMenu}
+            customClassName='miscellaneous'
+            transitionDelay={'75ms'}
+            navigateAndClose={() => navigateAndClose('/miscellaneous')}
+            isCurrentRoute={router.pathname.slice(1) === 'miscellaneous'}
+            routeName={'Miscellaneous'} />
+        </Box>
+      </Fade>
       </Navbar>
     </React.Fragment>
   )

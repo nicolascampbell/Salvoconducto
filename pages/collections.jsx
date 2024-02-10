@@ -17,7 +17,6 @@ export const getStaticProps = async () => {
 const Collections = ({ collections }) => {
   const [seenCollections, setSeenCollections] = useLocalStorage('configSeenCollections', [])
   const router = useRouter()
-  console.log(process.env.NEXT_PUBLIC_EDIT_LAYOUT)
   function handleSetSeenCollections(key) {
     setSeenCollections(
       produce((draft) => {

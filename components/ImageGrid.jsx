@@ -38,10 +38,11 @@ function generateLayout(breakpoints, size, customLayout) {
 const MeasuredImage = ({ item, onSizeChange, handleClick }) => {
   const getLink = (path) => `${path}`
   function handleResize(contentRect) {
-    onSizeChange({
-      width: contentRect.bounds.width,
-      height: contentRect.bounds.height
-    })
+    if (onSizeChange)
+      onSizeChange({
+        width: contentRect.bounds.width,
+        height: contentRect.bounds.height
+      })
   }
   return (
     <Measure bounds onResize={handleResize}>
@@ -52,7 +53,7 @@ const MeasuredImage = ({ item, onSizeChange, handleClick }) => {
             alt={'of last film'}
             loading="lazy"
             className="preview-imgs"
-            onClick={handleClick}
+            handleOnClick={handleClick}
           />
         </div>
       )}
@@ -139,13 +140,12 @@ const ImageGrid = ({ pureImages, description, handleClickImage, savedLayouts = u
   return (
     <React.Fragment>
       {matchesSmallDevices ?
-
         <Stack direction='column' spacing={2} marginY={2}>
           {pureImages.map((image, index) => (
             <MeasuredImage
               key={image.id}
               item={image}
-              handleClick={() => console.log('hey')}
+              handleClick={() => handleClickImage(index)}
             />
           ))}
           <Typography variant='body1' fontFamily={'monospace'}>{description}</Typography>
@@ -172,7 +172,6 @@ const ImageGrid = ({ pureImages, description, handleClickImage, savedLayouts = u
             <CustomGridItemComponent
               key={image.id}
               className={'box'}
-              onItemClick={() => handleClickImage(index)}
               isEditMode={isEditMode}
               customChild={
                 <MeasuredImage
@@ -187,7 +186,7 @@ const ImageGrid = ({ pureImages, description, handleClickImage, savedLayouts = u
             <CustomGridItemComponent
               key={'description'}
               className={'box'}
-              isEditMode={!previewMode && process.env.NEXT_PUBLIC_EDIT_LAYOUT}
+              isEditMode={isEditMode}
               customChild={
                 <Typography variant='body1' fontFamily={'monospace'}>{description}</Typography>
               }

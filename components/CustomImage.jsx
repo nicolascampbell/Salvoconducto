@@ -10,7 +10,6 @@ export default function CustomImage({
   customStyle,
   handleOnClick = () => null
 }) {
-  console.log(src);
   const [loading, setLoading] = React.useState(true)
   const [dimensions, setDimensions] = React.useState({
     width: width,

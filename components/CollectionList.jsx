@@ -36,7 +36,7 @@ export const CustomListItem = ({
 
       <Stack direction={'column'} alignItems={'center'} spacing={1} width={'100%'}>
         <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} width={'100%'}>
-          <Typography variant="h6" fontFamily={'Jost'} letterSpacing={'0.3rem'}>
+          <Typography variant="h6" letterSpacing={'0.3rem'}>
             {title}
             {wasSeen && (
               <VisibilityIcon
@@ -62,7 +62,10 @@ const CollectionListView = ({ collections, handleClickCollection, wasSeen }) => 
   return (
     <Grid container xs={12} justifyContent={'center'}>
       {collections.map((collection) => (
-        <Grid xs={12} md={6}>
+        <Grid
+          key={collection.id}
+          xs={12}
+          md={6}>
           <CustomListItem
             key={collection.id}
             title={collection.title}

@@ -74,16 +74,3 @@
   //   background-position: 0 100%;
   // }
 }
-
-.home-definition {
-  position: absolute;
-  top: 50%;
-  left: 53%;
-  transform: translate(-50%, -50%);
-  width: 50%;
-
-  @media screen and (max-width:700px) {
-    width: 90%;
-    max-width: 100%;
-  }
-}
