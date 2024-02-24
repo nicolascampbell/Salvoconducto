@@ -8,9 +8,7 @@ function truncate(str, n) {
   return (str.length > n) ? str.slice(0, n - 1) + ' (...)' : str;
 };
 const BORDER_STYLE = {
-  border: '1px solid hotpink',
-  borderBottom: '2px solid #ff3e9e',
-  borderRight: '3px solid #ff3e9e',
+  border: '3px solid #ff3e9e',
   marginTop: '1px'
 }
 
@@ -35,17 +33,29 @@ export const CustomListItem = ({
     >
 
       <Stack direction={'column'} alignItems={'center'} spacing={1} width={'100%'}>
-        <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} width={'100%'}>
-          <Typography variant="h6" letterSpacing={'0.3rem'}>
-            {title}
-            {wasSeen && (
-              <VisibilityIcon
-                sx={{ mx: 1, fontSize: '0.95rem', color: '#916bb6' }}
-              />
-            )}
-          </Typography>
-          <Typography variant="caption" fontWeight={'bold'}>{dayjs(date).format('MMMM YYYY')}</Typography>
-        </Stack>
+        <Grid container xs={12} justifyContent={'space-between'} alignItems={'center'} >
+          <Grid xs={12} sm={10}>
+            <Typography variant="h6" letterSpacing={'0.2rem'}>
+              {title}
+              {wasSeen && (
+                <VisibilityIcon
+                  sx={{ mx: 1, fontSize: '0.95rem', color: '#916bb6' }}
+                />
+              )}
+            </Typography>
+          </Grid>
+          <Grid xs={12} sm={2}
+            textAlign={{ xs: 'start', sm: 'end', }}
+          >
+            <Typography variant="caption"
+              fontWeight={'bold'}
+              textAlign={{ xs: 'start', sm: 'end', }}
+            >
+              {dayjs(date).format('MMMM YYYY')}
+            </Typography>
+
+          </Grid>
+        </Grid>
         <CustomImage
           src={coverSrc}
           width={'1500px'}

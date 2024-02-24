@@ -9,7 +9,7 @@ export default function About() {
   const getLink = (path) => `${router.basePath}${path}`
   return (
     <Grid container justifyContent={'center'} alignItems={'center'} marginY={2}>
-      <Grid xs={10} md={3} >
+      <Grid xs={10} md={3}>
         <CustomImage
           src={getLink('/about.jpg')}
           width={1651}
@@ -19,7 +19,7 @@ export default function About() {
       <Grid xs={10} md={6} lg={5} mdOffset={1}>
         <Definition
           title={'Conducto'}
-          subtitle={'con·duc·to'}
+          subtitle={"/kon'duk·to/"}
           classes='special-definition'
           type={'Person'}
           definitions={[

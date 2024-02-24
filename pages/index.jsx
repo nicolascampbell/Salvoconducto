@@ -8,18 +8,13 @@ export default function Home() {
 
   return (
     <Grid container xs={12} justifyContent={'center'}>
-      <Grid xs={11} sm={6} md={5} lg={4} sx={{
-        position:'absolute',
-        top:'50%',
-        left:'50%',
-        transform:'translate(-50%,50%)' 
-      }}>
+      <Grid xs={11} sm={6} md={5} lg={4} className={'absolute-middle'}>
         <Definition
           title={'Salvoconducto'}
           classes='no-border'
           subtitle={
             <span>
-              [Sal·βo·kon·
+              /Sal·βo·kon'
               <a
                 className="no-style-link duck-link"
                 onClick={() =>
@@ -32,7 +27,7 @@ export default function Home() {
               >
                 <strong>duk</strong>
               </a>
-              ·to]
+              ·to/
             </span>
           }
           type={'Website'}

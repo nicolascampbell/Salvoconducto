@@ -41,7 +41,7 @@ const Collections = ({ collections }) => {
       <Grid xs={12} md={6}>
         <Definition
           title={'Collections'}
-          subtitle={<span>col·lec·tions</span>}
+          subtitle={"/kəˈlɛ·tkʃənz/"}
 
           type={'Section'}
           definitions={[

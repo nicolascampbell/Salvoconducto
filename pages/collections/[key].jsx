@@ -6,9 +6,6 @@ import { useRouter } from 'next/router'
 import {
   North as ArrowUpwardIcon,
   KeyboardReturn as KeyboardReturnIcon,
-  ArrowRight as ArrowRightIcon,
-  ArrowLeft as ArrowLeftIcon,
-  BakeryDining as BakeryDiningIcon
 } from '@mui/icons-material'
 import Lightbox from 'yet-another-react-lightbox'
 import Zoom from 'yet-another-react-lightbox/plugins/zoom'
@@ -94,7 +91,7 @@ const Collection = ({ collection }) => {
       </Grid>
       <Grid xs={10}>
         <Typography variant='subtitle2' textAlign={'center'} fontWeight={600} >Collection</Typography>
-        <Typography variant='h2' textAlign={'center'} fontWeight={500} letterSpacing={'1rem'}>{collection.attributes.title}</Typography>
+        <Typography variant='h2' textAlign={'center'} fontWeight={500} letterSpacing={'0.4rem'}>{collection.attributes.title}</Typography>
       </Grid>
       <Grid xs={12} padding={0}>
         <ImageGrid handleClickImage={handleClickImage} collectionId={collection.id} description={collection.attributes.description} pureImages={pureImages} savedLayouts={collection.attributes.collectionLayouts} saveLayout={updateCollectionLayout} />

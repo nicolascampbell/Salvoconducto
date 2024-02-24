@@ -61,8 +61,8 @@ a:hover {
     -webkit-transition: 0.25s 0s ease-in-out;
     transition: 0.25s 0s ease-in-out;
 
-    a:hover {
-      color: $secondary-accent-color;
+    span:hover {
+      color: $support-accent-color;
     }
   }
 
@@ -155,16 +155,15 @@ a:hover {
     z-index: 2;
     padding: 0.6rem;
     border: 4px solid;
-    border-color: hotpink;
+    border-color: $support-accent-color;
     transition: background-color ease-in-out 0.2s;
     --bg-h: 0.3rem;
 
     &:where(:hover, :focus-visible) {
-      background-color: $support-primary;
+      background-color: $secondary-accent-color;
     }
 
     &.current-route {
-      border: transparent;
       background-color: $primary-accent-color;
     }
   }
