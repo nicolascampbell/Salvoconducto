@@ -8,7 +8,12 @@ export default function Home() {
 
   return (
     <Grid container xs={12} justifyContent={'center'}>
-      <Grid xs={11} sm={6} md={5} lg={4}>
+      <Grid xs={11} sm={6} md={5} lg={4} sx={{
+        position:'absolute',
+        top:'50%',
+        left:'50%',
+        transform:'translate(-50%,50%)' 
+      }}>
         <Definition
           title={'Salvoconducto'}
           classes='no-border'
