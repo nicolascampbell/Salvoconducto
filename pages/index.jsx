@@ -7,8 +7,8 @@ export default function Home() {
   const getLink = (path) => `${router.basePath}${path}`
 
   return (
-    <Grid container xs={12} justifyContent={'center'}>
-      <Grid xs={11} sm={6} md={5} lg={4} className={'absolute-middle'}>
+    <Grid container xs={12} justifyContent={'center'}alignContent={'center'} sx={{height:'100%'}}>
+      <Grid xs={11} sm={6} md={5} lg={4} >
         <Definition
           title={'Salvoconducto'}
           classes='no-border'

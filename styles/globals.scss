@@ -1,25 +1,18 @@
 // Required
-@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap/dist/css/bootstrap-utilities.min.css';
 @import 'bootstrap/scss/functions';
 
 // Default variable overrides
 // Variables
 @import './variables.scss';
 
-// Required
-@import 'bootstrap/scss/variables';
-@import 'bootstrap/scss/mixins';
-
 // Components
 @import './components/definitions.scss';
 @import './components/navbar.scss';
 // Pages
 @import './pages/misc.scss';
-@import './pages/home.scss';
-// Extras
-@import './components.scss';
 
-@import './font-faces/roboto-mono.scss';
+// @import './font-faces/roboto-mono.scss';
 
 // @import './font-faces/roboto.scss';
 // @import './font-faces/manrope.scss';
@@ -29,9 +22,46 @@
 @import 'react-grid-layout/css/styles.css';
 @import 'react-resizable/css/styles.css';
 
-.responsive-title {
-  @media (max-width: 576px) {
-    font-size: 7.5vw !important;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow: hidden;
+}
+
+html,
+body,
+#__next {
+  padding: 0;
+  margin: 0;
+  font-family: $font-family !important;
+  height: 100%;
+  min-height: 100%;
+  background-color: var(--mui-palette-background-default);
+  color: var(--mui-palette-text-primary);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+#__next {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  .main-content {
+    flex: 1;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+
   }
 }
 
@@ -45,62 +75,8 @@
   }
 }
 
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: $font-family !important;
-
-  &> {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-  }
-}
-
 .scroll-lock {
   overflow-y: hidden;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-
-  body {
-    color: $primary-font-color;
-    background: tint-color($primary-accent-color, 98%);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  html {
-    color-scheme: dark;
-  }
-
-  body {
-    color: $primary-font-color;
-    background: tint-color($primary-accent-color, 97%);
-  }
-}
-
-footer {
-  text-align: center;
-  padding: 0.5rem;
-  font-weight: 100;
-}
-
-.img-subtitle {
-  display: block;
-  float: right;
-  font-size: 0.8rem;
-  color: $primary-font-color;
-  font-weight: 200;
-  font-family: $font-family-monospace;
 }
 
 .preview-imgs {
@@ -133,4 +109,38 @@ footer {
     left: 50%;
     transform: translate(-50%, 50%);
   }
+}
+
+.no-pointer-event {
+  pointer-events: none;
+}
+
+
+
+
+
+
+// TEST
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

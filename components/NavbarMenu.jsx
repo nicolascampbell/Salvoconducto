@@ -1,28 +1,25 @@
 import React from 'react'
-import { Nav, Navbar } from 'react-bootstrap'
 import { useRouter } from 'next/router'
-import { Box, Fade, Typography } from '@mui/material'
-import AlternateEmailIcon from '@mui/icons-material/AlternateEmail'
+import { Box, Fade, Stack, Typography } from '@mui/material'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import Slide from '@mui/material/Slide'
 import Zoom from '@mui/material/Zoom'
-import Masonry from '@mui/lab/Masonry'
 import { useKeyPress } from 'hooks/useKeyPress'
-
+import { ModeSwitcher } from './ModeSwitcher'
 import NavbarBrand from './NavbarBrand'
 
 const MenuItem = ({ openMenu, customClassName, transitionDelay, navigateAndClose, isCurrentRoute, routeName }) => (
   <Zoom in={openMenu} style={{ transitionDelay: transitionDelay }}>
-    <Nav.Link
+    <Box
       onClick={navigateAndClose}
-      className={`${customClassName} ${isCurrentRoute ? 'current-route' : ''}`}
-      style={{lineHeight:0}}
+      className={`nav-link ${customClassName} ${isCurrentRoute ? 'current-route' : ''}`}
+      style={{ lineHeight: 0 }}
     >
       <Typography variant='h5' noWrap>
         {routeName}
       </Typography>
       <Typography variant='caption' fontSize={'x-small'} fontWeight={'300'} visibility={isCurrentRoute ? 'visible' : 'hidden'}>You are here</Typography>
-    </Nav.Link>
+    </Box>
   </Zoom>
 )
 export const NavbarMenu = () => {
@@ -47,11 +44,14 @@ export const NavbarMenu = () => {
       <Fade in={openMenu}>
         <div className="background"></div>
       </Fade>
-      <Navbar bg="light"
+      <Stack
+        direction={'row'}
+        justifyContent={'space-between'}
+        alignItems={'center'}
         className={`custom-navbar ${openMenu ? 'open' : 'close'}`}>
-        <Navbar.Brand onClick={() => navigateAndClose('/')} className="mx-2">
+        <div onClick={() => navigateAndClose('/')} className="mx-2">
           <NavbarBrand />
-        </Navbar.Brand>
+        </div>
         <div
           className={`menu ${openMenu ? 'isOpen' : 'isClosed'}`}
           onClick={() => handleOpenMenu(!openMenu)}
@@ -61,11 +61,14 @@ export const NavbarMenu = () => {
           <div className="menu-detail"></div>
         </div>
         <Slide direction="up" in={openMenu}>
-          <div className="menu-socials mb-3 me-3 ">
-            <div >
-              <span>conducto.photography#proton.me</span>
-            </div>
-          </div>
+          <Box className='menu-socials' m={3}>
+            <span>conducto.photography#proton.me</span>
+          </Box>
+        </Slide>
+        <Slide direction="up" in={openMenu}>
+          <Box className='mode-switcher' m={3}>
+            <ModeSwitcher />
+          </Box>
         </Slide>
         <Fade in={openMenu} unmountOnExit>
           <Box
@@ -102,7 +105,7 @@ export const NavbarMenu = () => {
               routeName={'Miscellaneous'} />
           </Box>
         </Fade>
-      </Navbar>
+      </Stack>
     </React.Fragment>
   )
 }

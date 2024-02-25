@@ -20,14 +20,8 @@
   }
 
   .title {
-    color: $primary-font-color;
     display: inline-block;
     font-size: 3.5rem;
-  }
-
-  .subtitle,
-  p {
-    color: tint-color($primary-font-color, 30%);
   }
 
   &.special-definition {
@@ -43,34 +37,10 @@
     color: $support-accent-color;
     position: relative;
     font-weight: bold;
-    color: black;
     font-size: 0.8rem;
   }
 
   li {
-    color: tint-color($primary-font-color, 15%);
     margin: 0 0 10px 0;
   }
-
-  // a {
-  //   cursor: pointer;
-  //   overflow: hidden;
-  //   font-weight: 600 !important;
-  //   text-decoration: none;
-  //   background: linear-gradient(
-  //     to right,
-  //     rgb(65, 23, 107),
-  //     rebeccapurple 50%,
-  //     rgb(145, 85, 201) 50%
-  //   );
-  //   background-clip: text;
-  //   -webkit-background-clip: text;
-  //   -webkit-text-fill-color: transparent;
-  //   background-size: 200% 100%;
-  //   background-position: 100%;
-  //   transition: background-position 400ms ease;
-  // }
-  // a:hover {
-  //   background-position: 0 100%;
-  // }
 }

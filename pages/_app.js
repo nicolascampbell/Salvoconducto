@@ -31,6 +31,16 @@ let theme = extendTheme({
           main: '#ff69b4'
         }
       }
+    },
+    dark: {
+      palette: {
+        text:{
+          primary:'#f0f0f0'
+        },
+        background: {
+          default: '#140D1A'
+        }
+      }
     }
   }
 })
@@ -53,7 +63,7 @@ function MyApp({
       </Head>
 
       <NavbarMenu />
-      <Grid padding={2} container sx={{ zIndex: 100, position: 'relative' }}>
+      <Grid padding={1} className='main-content' container sx={{ zIndex: 100, position: 'relative' }}>
         <Grid xs={12}>
           <Component {...pageProps} />
         </Grid>
